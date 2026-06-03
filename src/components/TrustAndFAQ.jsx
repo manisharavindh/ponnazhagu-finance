@@ -13,10 +13,10 @@ const BADGE_ICONS = { ShieldCheck, Eye, Clock, Award };
 function FAQItem({ item, isOpen, onToggle }) {
   return (
     <div
-      className={`border rounded-xl transition-all duration-300 ${
+      className={`border rounded-xl transition-all duration-350 ${
         isOpen
-          ? "border-gold/40 shadow-sm bg-white"
-          : "border-warm-gray-dark bg-white hover:border-gold/20"
+          ? "border-brand-secondary/40 shadow-card bg-white"
+          : "border-brand-border bg-white hover:border-brand-secondary/30 hover:shadow-sm"
       }`}
     >
       <button
@@ -26,24 +26,32 @@ function FAQItem({ item, isOpen, onToggle }) {
       >
         <span
           className={`text-[13px] sm:text-sm lg:text-[15px] font-semibold transition-colors leading-snug ${
-            isOpen ? "text-maroon" : "text-navy"
+            isOpen ? "text-brand-primary" : "text-brand-text-dark"
           }`}
         >
           {item.question}
         </span>
-        <ChevronDown
-          size={17}
-          className={`flex-shrink-0 text-gray-400 transition-transform duration-300 ${
-            isOpen ? "rotate-180 text-maroon" : ""
+        <div
+          className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-350 ${
+            isOpen
+              ? "bg-brand-primary/10 text-brand-primary"
+              : "bg-brand-bg-warm text-brand-text-muted"
           }`}
-        />
+        >
+          <ChevronDown
+            size={16}
+            className={`transition-transform duration-350 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </div>
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`overflow-hidden transition-all duration-350 ease-in-out ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-5 pb-4 text-[13px] sm:text-sm text-gray-600 leading-relaxed border-t border-warm-gray-dark pt-3.5">
+        <div className="px-5 pb-5 text-[13px] sm:text-sm text-brand-text-muted leading-relaxed border-t border-brand-border pt-4">
           {item.answer}
         </div>
       </div>
@@ -55,18 +63,27 @@ export default function TrustAndFAQ() {
   const [openFAQ, setOpenFAQ] = useState(0);
 
   return (
-    <section id="about" className="bg-cream py-14 sm:py-16 lg:py-24">
+    <section id="about" className="bg-brand-bg-cream py-14 sm:py-16 lg:py-24">
       <div className="section-container">
         {/* ── Trust Badges Section ── */}
         <div className="text-center max-w-xl mx-auto mb-10 lg:mb-12">
-          <span className="inline-block px-3.5 py-1.5 rounded-full bg-maroon/10 text-maroon text-[11px] font-bold uppercase tracking-wider mb-3">
+          <span
+            className="inline-block px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase mb-3"
+            style={{
+              background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.04))",
+              color: "#7A0616",
+              letterSpacing: "0.15em",
+            }}
+          >
             Why Choose Us
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-navy leading-tight mb-1">
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
             Trust, Security &{" "}
-            <span className="text-maroon">Compliance</span>
+            <span className="text-brand-text-dark">Compliance</span>
           </h2>
-          <div className="gold-divider" />
+          <div className="gold-divider">
+            <span className="gold-divider-dot" />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-14 lg:mb-20">
@@ -75,22 +92,29 @@ export default function TrustAndFAQ() {
             return (
               <div
                 key={badge.title}
-                className="group text-center bg-white rounded-2xl px-5 py-6 border border-warm-gray-dark hover:border-gold/30 shadow-card hover:shadow-card-hover transition-all duration-300 animate-fade-in-up"
+                className="skeuo-card group text-center px-5 py-7 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.08}s` }}
               >
-                <div className="w-14 h-14 mx-auto mb-3.5 rounded-xl bg-maroon/8 flex items-center justify-center group-hover:bg-maroon transition-colors duration-300">
+                <div
+                  className="skeuo-icon mx-auto mb-4 group-hover:scale-105"
+                  style={{
+                    background: "linear-gradient(145deg, #F5F0E8, #FFFFFF)",
+                    border: "1px solid rgba(197,160,89,0.3)",
+                    boxShadow: "0 4px 12px rgba(28,25,23,0.05), inset 0 2px 4px rgba(255,255,255,0.8)",
+                  }}
+                >
                   {Icon && (
                     <Icon
                       size={24}
-                      className="text-maroon group-hover:text-white transition-colors duration-300"
+                      className="text-brand-secondary-dark group-hover:text-brand-primary transition-colors duration-300"
                       strokeWidth={1.8}
                     />
                   )}
                 </div>
-                <h3 className="text-[15px] font-heading font-bold text-navy mb-1.5 leading-snug">
+                <h3 className="text-[15px] font-heading font-bold text-brand-text-dark mb-2 leading-snug">
                   {badge.title}
                 </h3>
-                <p className="text-[13px] text-gray-500 leading-relaxed">
+                <p className="text-[13px] text-brand-text-muted leading-relaxed">
                   {badge.description}
                 </p>
               </div>
@@ -99,26 +123,24 @@ export default function TrustAndFAQ() {
         </div>
 
         {/* ── FAQ Section ── */}
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-[1.75rem] font-heading font-extrabold text-navy leading-tight mb-2">
+            <h2 className="text-2xl sm:text-[1.75rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-2">
               Frequently Asked Questions
             </h2>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-brand-text-muted text-sm leading-relaxed">
               Quick answers to common queries about our loan products and
               processes
             </p>
           </div>
 
-          <div className="space-y-2.5">
+          <div className="space-y-3">
             {FAQ_DATA.map((item, index) => (
               <FAQItem
                 key={index}
                 item={item}
                 isOpen={openFAQ === index}
-                onToggle={() =>
-                  setOpenFAQ(openFAQ === index ? -1 : index)
-                }
+                onToggle={() => setOpenFAQ(openFAQ === index ? -1 : index)}
               />
             ))}
           </div>

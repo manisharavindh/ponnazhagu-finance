@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   Gem,
   Store,
@@ -5,108 +6,195 @@ import {
   Car,
   PiggyBank,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { SERVICES } from "../constants/data";
+import Button from "./ui/Button";
 
 const ICON_MAP = { Gem, Store, Wallet, Car, PiggyBank };
 
+// Map to the CSS skeuomorphic classes defined in index.css for active items
+const ICON_CLASSES = {
+  "gold-loan": "skeuo-icon-gold",
+  "business-loan": "skeuo-icon-crimson",
+  "personal-loan": "skeuo-icon-crimson",
+  "vehicle-loan": "skeuo-icon-gold",
+  "savings-schemes": "skeuo-icon-gold",
+};
+
 export default function Services() {
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === "left" ? -340 : 340;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section id="services" className="bg-cream py-14 sm:py-16 lg:py-24">
+    <section id="services" className="bg-brand-bg-cream py-14 sm:py-16 lg:py-24 overflow-hidden">
       <div className="section-container">
         {/* Section Header */}
         <div className="text-center max-w-xl mx-auto mb-10 lg:mb-14">
-          <span className="inline-block px-3.5 py-1.5 rounded-full bg-maroon/10 text-maroon text-[11px] font-bold uppercase tracking-wider mb-3">
+          {/* <span
+            className="inline-block px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase mb-3"
+            style={{
+              background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.04))",
+              color: "#7A0616",
+              letterSpacing: "0.15em",
+            }}
+          >
             Our Services
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-navy leading-tight mb-1">
-            Financial Solutions Tailored for{" "}
-            <span className="text-maroon">Your Needs</span>
+          </span> */}
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
+            Services We Provide
           </h2>
-          <div className="gold-divider" />
-          <p className="text-gray-500 text-sm lg:text-[15px] leading-relaxed mt-3">
+          <div className="gold-divider">
+            <span className="gold-divider-dot" />
+          </div>
+          {/* <p className="text-brand-text-muted text-sm lg:text-[15px] leading-relaxed mt-3">
             From instant gold loans to long-term savings schemes — we have the
             right product for every stage of your financial journey.
-          </p>
+          </p> */}
         </div>
 
-        {/* Services Grid — 3 cols on large, bottom row centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {SERVICES.map((service, index) => {
-            const Icon = ICON_MAP[service.icon];
-            // Center the last row if it has fewer than 3 items
-            const isLastRowItem = index >= 3;
-            const isOddTotal = SERVICES.length % 3 !== 0;
+        {/* Carousel Container */}
+        <div className="relative max-w-7xl mx-auto">
+          {/* Left Arrow (Desktop only) */}
+          <button
+            onClick={() => scroll("left")}
+            className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-12 h-12 rounded-full bg-gradient-to-b from-[#D4AF37] to-[#B8942E] shadow-lg border border-[#FDE08B] items-center justify-center cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft size={24} className="text-[#7A0616]" />
+          </button>
 
-            return (
-              <div
-                key={service.id}
-                className={`group relative bg-white rounded-2xl p-6 lg:p-7 border border-warm-gray-dark hover:border-gold/30 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col animate-fade-in-up ${
-                  isLastRowItem && isOddTotal && index === 3
-                    ? "lg:col-start-1 lg:col-end-2 lg:ml-auto lg:mr-0"
-                    : ""
-                }`}
-                style={{
-                  animationDelay: `${index * 0.08}s`,
-                  ...(isLastRowItem && isOddTotal && SERVICES.length - 3 === 2
-                    ? {}
-                    : {}),
-                }}
-              >
-                {/* Gold accent line at top */}
-                <div className="absolute top-0 left-6 right-6 h-[2px] rounded-b-full bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {/* Horizontal Scroll Snap Wrapper */}
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto gap-6 snap-x snap-mandatory py-8 px-4 sm:px-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
+            {SERVICES.map((service, index) => {
+              const Icon = ICON_MAP[service.icon];
+              const iconClass = ICON_CLASSES[service.id] || ICON_CLASSES["gold-loan"];
 
-                {/* Icon */}
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
-                  style={{ background: `${service.color}10` }}
-                >
-                  {Icon && (
-                    <Icon
-                      size={22}
-                      style={{ color: service.color }}
-                      strokeWidth={1.8}
+              if (service.isActive) {
+                // ── ACTIVE STATE ("Gold Loan") ──
+                return (
+                  <div
+                    key={service.id}
+                    className="skeuo-card group min-w-[280px] md:min-w-[340px] snap-center shrink-0 flex flex-col p-6 lg:p-7 relative animate-fade-in-up"
+                    style={{ animationDelay: `${index * 0.08}s` }}
+                  >
+                    {/* Hover accent bar */}
+                    <div
+                      className="absolute top-0 left-6 right-6 h-[2px] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                      style={{
+                        background: "linear-gradient(90deg, transparent, #C5A059, transparent)",
+                      }}
                     />
-                  )}
-                </div>
 
-                {/* Title */}
-                <h3 className="text-[17px] font-heading font-bold text-navy mb-1 group-hover:text-maroon transition-colors leading-snug">
-                  {service.title}
-                </h3>
+                    {/* Skeuomorphic 3D Icon */}
+                    <div className={`skeuo-icon ${iconClass} mb-4 group-hover:scale-105 transition-transform`}>
+                      {Icon && <Icon size={22} color="#FFFFFF" strokeWidth={1.8} />}
+                    </div>
 
-                {/* Highlight Badge */}
-                <p className="text-[11px] font-semibold text-gold-dark mb-3.5 uppercase tracking-wide leading-snug">
-                  {service.highlight}
-                </p>
+                    {/* Title */}
+                    <h3 className="text-[17px] font-heading font-bold text-brand-text-dark mb-1 group-hover:text-brand-primary transition-colors duration-350 leading-snug">
+                      {service.title}
+                    </h3>
 
-                {/* Benefits */}
-                <ul className="space-y-2 mb-5 flex-1">
-                  {service.benefits.map((benefit, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2.5 text-[13px] text-gray-600 leading-snug"
+                    {/* Highlight */}
+                    <p
+                      className="text-[11px] font-semibold text-brand-secondary-dark mb-4 uppercase leading-snug"
+                      style={{ letterSpacing: "0.15em" }}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-gold mt-[6px] flex-shrink-0" />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
+                      {service.highlight}
+                    </p>
 
-                {/* CTA */}
-                <a
-                  href="#hero-form"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-maroon hover:text-maroon-dark group/link transition-colors"
-                >
-                  Explore
-                  <ArrowRight
-                    size={15}
-                    className="transition-transform group-hover/link:translate-x-1"
-                  />
-                </a>
-              </div>
-            );
-          })}
+                    {/* Benefits */}
+                    <ul className="space-y-2.5 mb-6 flex-1">
+                      {service.benefits.map((benefit, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-[13px] text-brand-text-muted leading-snug">
+                          <span
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[6px]"
+                            style={{
+                              background: "linear-gradient(145deg, #DBBE7A, #C5A059)",
+                              boxShadow: "0 1px 3px rgba(197,160,89,0.3)",
+                            }}
+                          />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Tactile Metallic CTA */}
+                    <Button href="#hero-form" className="w-full">
+                      Apply Now
+                      <ArrowRight size={16} />
+                    </Button>
+                  </div>
+                );
+              } else {
+                // ── INACTIVE STATE ("Coming Soon") ──
+                return (
+                  <div
+                    key={service.id}
+                    className="min-w-[280px] md:min-w-[340px] snap-center shrink-0 flex flex-col p-6 lg:p-7 relative bg-brand-bg-warm/80 backdrop-blur-sm border border-white/30 shadow-md rounded-2xl grayscale-[30%] opacity-90 animate-fade-in-up"
+                    style={{ animationDelay: `${index * 0.08}s` }}
+                  >
+                    {/* Inactive Icon (Dimmed/Grey) */}
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-stone-200 shadow-inner border border-stone-300/50">
+                      {Icon && <Icon size={22} color="#78716C" strokeWidth={1.8} />}
+                    </div>
+
+                    {/* Title (Muted) */}
+                    <h3 className="text-[17px] font-heading font-bold text-stone-600 mb-1 leading-snug">
+                      {service.title}
+                    </h3>
+
+                    {/* Highlight (Muted) */}
+                    <p
+                      className="text-[11px] font-semibold text-stone-500 mb-4 uppercase leading-snug"
+                      style={{ letterSpacing: "0.15em" }}
+                    >
+                      {service.highlight}
+                    </p>
+
+                    {/* Benefits (Muted) */}
+                    <ul className="space-y-2.5 mb-6 flex-1">
+                      {service.benefits.map((benefit, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-[13px] text-stone-400 leading-snug">
+                          <span
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[6px] bg-stone-300 shadow-inner"
+                          />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Debossed "Coming Soon" Badge */}
+                    <div className="mt-auto text-center w-full">
+                      <span className="block shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] bg-stone-200/80 text-stone-500 text-[11px] uppercase tracking-[0.2em] font-bold px-4 py-3.5 rounded-xl border border-stone-300/50">
+                        Coming Soon
+                      </span>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </div>
+
+          {/* Right Arrow (Desktop only) */}
+          <button
+            onClick={() => scroll("right")}
+            className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-12 h-12 rounded-full bg-gradient-to-b from-[#D4AF37] to-[#B8942E] shadow-lg border border-[#FDE08B] items-center justify-center cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <ChevronRight size={24} className="text-[#7A0616]" />
+          </button>
         </div>
       </div>
     </section>

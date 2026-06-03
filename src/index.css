@@ -1,44 +1,71 @@
 @import "tailwindcss";
 
-/* ──────────────────────────────────────────────
-   Ponnazhagu Finance — Design System Tokens
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   Ponnazhagu Finance — Heritage & Prosperity Design System
+   Premium Minimalism meets Skeuomorphism
+   ══════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Brand Colors ── */
-  --color-maroon: #7A0616;
-  --color-maroon-dark: #5C0410;
-  --color-maroon-light: #9A1830;
+  /* ── Brand Semantic Colors ── */
+  --color-brand-primary: #7A0616;
+  --color-brand-primary-dark: #5A0410;
+  --color-brand-primary-light: #9C1A2E;
+  --color-brand-secondary: #C5A059;
+  --color-brand-secondary-light: #DBBE7A;
+  --color-brand-secondary-dark: #A88940;
+  --color-brand-bg-warm: #FAFAF9;
+  --color-brand-bg-cream: #F5F0E8;
+  --color-brand-text-dark: #1C1917;
+  --color-brand-text-muted: #78716C;
+  --color-brand-border: #E7E5E4;
+  --color-brand-border-light: rgba(255, 255, 255, 0.5);
+
+  /* ── Supporting Colors ── */
   --color-navy: #0F172A;
   --color-navy-light: #1E293B;
-  --color-gold: #D4AF37;
-  --color-gold-light: #E8CC6E;
-  --color-gold-dark: #C5A059;
-  --color-cream: #FAFAF9;
-  --color-warm-gray: #F5F5F4;
-  --color-warm-gray-dark: #E7E5E4;
 
   /* ── Fonts ── */
   --font-heading: "Poppins", "Inter", system-ui, sans-serif;
   --font-body: "Inter", "Poppins", system-ui, sans-serif;
 
-  /* ── Shadows ── */
-  --shadow-card: 0 2px 16px 0 rgba(15, 23, 42, 0.06);
-  --shadow-card-hover: 0 8px 32px 0 rgba(15, 23, 42, 0.10);
-  --shadow-gold: 0 4px 20px 0 rgba(212, 175, 55, 0.22);
-  --shadow-fab: 0 -2px 16px 0 rgba(122, 6, 22, 0.25);
+  /* ── Multi-layered Shadows (Skeuomorphic Depth) ── */
+  --shadow-card:
+    0 1px 2px rgba(28, 25, 23, 0.04),
+    0 4px 12px rgba(28, 25, 23, 0.06),
+    0 12px 32px rgba(28, 25, 23, 0.04);
+  --shadow-card-hover:
+    0 2px 4px rgba(28, 25, 23, 0.05),
+    0 8px 24px rgba(28, 25, 23, 0.08),
+    0 24px 48px rgba(28, 25, 23, 0.06);
+  --shadow-gold:
+    0 2px 8px rgba(197, 160, 89, 0.25),
+    0 8px 24px rgba(197, 160, 89, 0.15);
+  --shadow-gold-hover:
+    0 4px 12px rgba(197, 160, 89, 0.35),
+    0 12px 32px rgba(197, 160, 89, 0.2);
+  --shadow-inset-soft: inset 0 1px 2px rgba(28, 25, 23, 0.06);
+  --shadow-inset-glow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-fab:
+    0 -2px 12px rgba(122, 6, 22, 0.2),
+    0 -8px 32px rgba(122, 6, 22, 0.08);
+  --shadow-btn-3d:
+    0 2px 0 #A88940,
+    0 4px 8px rgba(197, 160, 89, 0.3);
+  --shadow-btn-3d-pressed:
+    0 1px 0 #A88940,
+    0 2px 4px rgba(197, 160, 89, 0.2);
 }
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════════
    Global Base Styles
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════════════════ */
 
 *,
 *::before,
 *::after {
-  /* margin: 0; */
-  /* padding: 0; */
-  /* box-sizing: border-box; */
+  /* margin: 0;
+  padding: 0;
+  box-sizing: border-box; */
 }
 
 html {
@@ -49,9 +76,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--color-navy);
-  background: #ffffff;
-  line-height: 1.6;
+  color: var(--color-brand-text-dark);
+  background: var(--color-brand-bg-warm);
+  line-height: 1.65;
   overflow-x: hidden;
 }
 
@@ -62,88 +89,258 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  line-height: 1.25;
+  line-height: 1.2;
+  color: var(--color-brand-text-dark);
 }
 
-/* ──────────────────────────────────────────────
-   Gold Divider / Accent
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   Gold Divider / Heritage Accent
+   ══════════════════════════════════════════════════════════ */
 
 .gold-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 1.25rem auto;
+  gap: 10px;
+  margin: 1rem auto;
 }
 
 .gold-divider::before,
 .gold-divider::after {
   content: "";
   height: 1px;
-  width: 48px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  width: 40px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-secondary), transparent);
 }
 
 .gold-divider-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--color-gold);
+  width: 6px;
+  height: 6px;
+  background: var(--color-brand-secondary);
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(197, 160, 89, 0.5);
 }
 
-/* ──────────────────────────────────────────────
-   Range Slider Styling
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   Micro-Texture Backgrounds (Heritage Patterns)
+   ══════════════════════════════════════════════════════════ */
+
+.heritage-pattern {
+  position: relative;
+}
+
+.heritage-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--color-brand-secondary) 1px, transparent 1px),
+    radial-gradient(circle at 0% 0%, var(--color-brand-primary) 0.5px, transparent 0.5px);
+  background-size: 24px 24px, 16px 16px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mandala-texture {
+  position: relative;
+}
+
+.mandala-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image:
+    repeating-conic-gradient(from 0deg at 50% 50%, var(--color-brand-secondary) 0deg 30deg, transparent 30deg 60deg);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Premium 3D Buttons (Skeuomorphic Gold CTA)
+   ══════════════════════════════════════════════════════════ */
+
+.btn-gold-3d {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  color: var(--color-brand-text-dark);
+  background: linear-gradient(180deg,
+      #DBBE7A 0%,
+      #C5A059 40%,
+      #B8923D 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom-color: #A88940;
+  box-shadow: var(--shadow-btn-3d);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold-3d::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+  pointer-events: none;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.btn-gold-3d:hover {
+  background: linear-gradient(180deg,
+      #E5CA8E 0%,
+      #CEAC65 40%,
+      #C09B4A 100%);
+  box-shadow: var(--shadow-gold-hover);
+  transform: translateY(-1px);
+}
+
+.btn-gold-3d:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-btn-3d-pressed);
+  background: linear-gradient(180deg,
+      #B8923D 0%,
+      #C5A059 60%,
+      #DBBE7A 100%);
+}
+
+/* ══════════════════════════════════════════════════════════
+   Skeuomorphic Service Card
+   ══════════════════════════════════════════════════════════ */
+
+.skeuo-card {
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(250, 250, 249, 0.9) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-brand-border-light);
+  box-shadow:
+    var(--shadow-card),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-radius: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skeuo-card:hover {
+  box-shadow:
+    var(--shadow-card-hover),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-color: rgba(197, 160, 89, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CSS 3D Skeuomorphic Icons
+   ══════════════════════════════════════════════════════════ */
+
+.skeuo-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow:
+    0 2px 6px rgba(28, 25, 23, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(28, 25, 23, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.skeuo-icon-gold {
+  background: linear-gradient(145deg, #E8D48B, #C5A059);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+.skeuo-icon-crimson {
+  background: linear-gradient(145deg, #9C1A2E, #7A0616);
+  border: 1px solid rgba(156, 26, 46, 0.4);
+}
+
+.skeuo-icon-navy {
+  background: linear-gradient(145deg, #2D3A4F, #0F172A);
+  border: 1px solid rgba(30, 41, 59, 0.5);
+}
+
+/* ══════════════════════════════════════════════════════════
+   Premium Range Slider (Skeuomorphic)
+   ══════════════════════════════════════════════════════════ */
 
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 6px;
+  height: 8px;
   border-radius: 999px;
-  background: var(--color-warm-gray-dark);
   outline: none;
   cursor: pointer;
+  border: 1px solid rgba(28, 25, 23, 0.08);
+  box-shadow:
+    inset 0 1px 3px rgba(28, 25, 23, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: var(--color-maroon);
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(122, 6, 22, 0.3);
+  background: linear-gradient(145deg, #DBBE7A, #A88940);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 2px 8px rgba(168, 137, 64, 0.4),
+    0 4px 12px rgba(28, 25, 23, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 4px 16px rgba(122, 6, 22, 0.4);
+  transform: scale(1.12);
+  box-shadow:
+    0 4px 16px rgba(168, 137, 64, 0.5),
+    0 8px 24px rgba(28, 25, 23, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: var(--color-maroon);
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(122, 6, 22, 0.3);
+  background: linear-gradient(145deg, #DBBE7A, #A88940);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 2px 8px rgba(168, 137, 64, 0.4),
+    0 4px 12px rgba(28, 25, 23, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   cursor: pointer;
 }
 
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════════
    Animations
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════════════════ */
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
 
   to {
@@ -152,7 +349,7 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-@keyframes shimmer {
+@keyframes goldShimmer {
   0% {
     background-position: -200% center;
   }
@@ -162,15 +359,15 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-@keyframes pulse-gold {
+@keyframes pulseGold {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4);
   }
 
   50% {
-    box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+    box-shadow: 0 0 0 10px rgba(197, 160, 89, 0);
   }
 }
 
@@ -178,25 +375,21 @@ input[type="range"]::-moz-range-thumb {
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
-.animate-shimmer {
+.animate-gold-shimmer {
   background: linear-gradient(90deg,
-      var(--color-gold-dark) 0%,
-      var(--color-gold-light) 50%,
-      var(--color-gold-dark) 100%);
+      var(--color-brand-secondary-dark) 0%,
+      var(--color-brand-secondary-light) 50%,
+      var(--color-brand-secondary-dark) 100%);
   background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
+  animation: goldShimmer 3s linear infinite;
 }
 
-.animate-pulse-gold {
-  animation: pulse-gold 2s ease-in-out infinite;
-}
-
-/* ──────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════════
    Layout Container
-   ────────────────────────────────────────────── */
+   ══════════════════════════════════════════════════════════ */
 
 .section-container {
-  max-width: 1180px;
+  max-width: 1140px;
   margin: 0 auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -219,31 +412,34 @@ input[type="range"]::-moz-range-thumb {
 /* Glass effect for mobile nav overlay */
 .glass-overlay {
   background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-/* Scrollbar styling */
+/* ══════════════════════════════════════════════════════════
+   Scrollbar
+   ══════════════════════════════════════════════════════════ */
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-cream);
+  background: var(--color-brand-bg-warm);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gold-dark);
+  background: var(--color-brand-secondary-dark);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold);
+  background: var(--color-brand-secondary);
 }
 
-/* ──────────────────────────────────────────────
-   Number input spinner removal
-   ────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   Number Input Cleanup
+   ══════════════════════════════════════════════════════════ */
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -253,4 +449,49 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Premium Input Fields (Skeuomorphic)
+   ══════════════════════════════════════════════════════════ */
+
+.input-premium {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid var(--color-brand-border);
+  background: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-brand-text-dark);
+  box-shadow: var(--shadow-inset-soft);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.input-premium::placeholder {
+  color: var(--color-brand-text-muted);
+  font-weight: 400;
+}
+
+.input-premium:hover {
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.input-premium:focus {
+  border-color: var(--color-brand-secondary);
+  box-shadow:
+    var(--shadow-inset-soft),
+    0 0 0 3px rgba(197, 160, 89, 0.12);
+}
+
+.input-premium-error {
+  border-color: #EF4444;
+}
+
+.input-premium-error:focus {
+  border-color: #EF4444;
+  box-shadow:
+    var(--shadow-inset-soft),
+    0 0 0 3px rgba(239, 68, 68, 0.1);
 }

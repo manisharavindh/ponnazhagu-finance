@@ -8,11 +8,11 @@
 export const COMPANY = {
   name: "Ponnazhagu Finance",
   tagline: "Your Trusted Financial Partner for Growth & Prosperity",
-  phone: "+91 44 2345 6789",
-  whatsapp: "+914423456789",
-  email: "info@ponnazhagufinance.com",
+  phone: "+91 99446 34006",
+  whatsapp: "+91 99446 34006",
+  email: "[EMAIL_ADDRESS]",
   address: "No. 12, Ranganathan Street, T. Nagar, Chennai – 600017, Tamil Nadu",
-  branchTimings: "Mon – Sat: 9:30 AM – 6:00 PM",
+  branchTimings: "Mon – Sat: 10:00 AM – 4:00 PM",
   founded: "1998",
   registrationInfo: "RBI Registered NBFC | CIN: U65910TN1998PLC012345",
 };
@@ -59,6 +59,7 @@ export const SERVICES = [
       "Flexible repayment options",
     ],
     color: "#D4AF37",
+    isActive: true,
   },
   {
     id: "business-loan",
@@ -72,6 +73,7 @@ export const SERVICES = [
       "Doorstep service available",
     ],
     color: "#0F172A",
+    isActive: false,
   },
   {
     id: "personal-loan",
@@ -85,6 +87,7 @@ export const SERVICES = [
       "Pre-approved offers for existing customers",
     ],
     color: "#7A0616",
+    isActive: false,
   },
   {
     id: "vehicle-loan",
@@ -98,6 +101,7 @@ export const SERVICES = [
       "Hassle-free RC transfer assistance",
     ],
     color: "#0F172A",
+    isActive: false,
   },
   {
     id: "savings-schemes",
@@ -111,6 +115,7 @@ export const SERVICES = [
       "Nomination & auto-renewal facility",
     ],
     color: "#D4AF37",
+    isActive: false,
   },
 ];
 

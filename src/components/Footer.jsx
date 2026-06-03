@@ -7,86 +7,102 @@ import {
   Heart,
 } from "lucide-react";
 import { COMPANY, FOOTER_LINKS } from "../constants/data";
+import Button from "./ui/Button";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-navy text-white">
+    <footer id="contact" className="bg-brand-primary text-white mandala-texture">
       {/* Gold accent top line */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
+      <div
+        className="h-[4px] w-full relative z-10"
+        style={{
+          background: "linear-gradient(90deg, #A88940 0%, #DBBE7A 25%, #C5A059 50%, #DBBE7A 75%, #A88940 100%)",
+          boxShadow: "0 2px 10px rgba(197,160,89,0.4)",
+        }}
+      />
 
-      <div className="section-container pt-12 pb-10 lg:pt-16 lg:pb-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+      <div className="section-container relative z-10 pt-14 pb-12 lg:pt-20 lg:pb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* ── Column 1: Company Info ── */}
           <div className="sm:col-span-2 lg:col-span-1">
             {/* Logo */}
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center shadow-gold flex-shrink-0">
-                <span className="text-white font-heading font-black text-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: "linear-gradient(145deg, #DBBE7A, #A88940)",
+                  boxShadow: "0 4px 12px rgba(28,25,23,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
+                  border: "2px solid rgba(255,255,255,0.2)",
+                }}
+              >
+                <span className="text-white font-heading font-black text-xl drop-shadow-md">
                   ₹
                 </span>
               </div>
               <div className="leading-tight">
-                <span className="block font-heading font-extrabold text-white text-lg tracking-tight">
+                <span className="block font-heading font-extrabold text-white text-xl tracking-tight drop-shadow-sm">
                   Ponnazhagu
                 </span>
-                <span className="block text-[10px] font-semibold text-gold tracking-[0.15em] uppercase -mt-0.5">
+                <span
+                  className="block text-[11px] font-bold tracking-[0.2em] uppercase -mt-0.5"
+                  style={{ color: "#E8CC6E" }}
+                >
                   Finance
                 </span>
               </div>
             </div>
-            <p className="text-gray-400 text-[13px] leading-relaxed mb-5 max-w-xs">
+            <p className="text-white/80 text-[13px] leading-relaxed mb-6 max-w-sm">
               Your trusted financial partner since {COMPANY.founded}. RBI
               registered NBFC serving families and businesses across Tamil Nadu
               with integrity and transparency.
             </p>
             {/* Contact Details */}
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               <a
                 href={`tel:${COMPANY.phone}`}
-                className="flex items-center gap-2.5 text-[13px] text-gray-400 hover:text-gold transition-colors"
+                className="flex items-center gap-3 text-[13px] text-white/80 hover:text-brand-secondary-light transition-colors"
               >
-                <Phone size={14} className="text-gold flex-shrink-0" />
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <Phone size={13} className="text-brand-secondary-light" />
+                </div>
                 {COMPANY.phone}
               </a>
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="flex items-center gap-2.5 text-[13px] text-gray-400 hover:text-gold transition-colors"
+                className="flex items-center gap-3 text-[13px] text-white/80 hover:text-brand-secondary-light transition-colors"
               >
-                <Mail size={14} className="text-gold flex-shrink-0" />
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <Mail size={13} className="text-brand-secondary-light" />
+                </div>
                 {COMPANY.email}
               </a>
-              <div className="flex items-start gap-2.5 text-[13px] text-gray-400">
-                <MapPin
-                  size={14}
-                  className="text-gold flex-shrink-0 mt-0.5"
-                />
-                <span className="max-w-[220px]">{COMPANY.address}</span>
-              </div>
-              <div className="flex items-center gap-2.5 text-[13px] text-gray-400">
-                <Clock size={14} className="text-gold flex-shrink-0" />
-                {COMPANY.branchTimings}
+              <div className="flex items-start gap-3 text-[13px] text-white/80">
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin size={13} className="text-brand-secondary-light" />
+                </div>
+                <span className="max-w-[240px] pt-1 leading-snug">{COMPANY.address}</span>
               </div>
             </div>
           </div>
 
           {/* ── Column 2: Services ── */}
           <div>
-            <h4 className="font-heading font-bold text-[15px] mb-4 text-white">
+            <h4 className="font-heading font-bold text-[15px] mb-5 text-brand-secondary-light uppercase tracking-wider">
               Our Services
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {FOOTER_LINKS.services.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="flex items-center gap-1 text-[13px] text-gray-400 hover:text-gold transition-colors group"
+                    className="flex items-center gap-1.5 text-[14px] text-white/70 hover:text-white transition-colors group"
                   >
                     {link.label}
                     <ArrowUpRight
-                      size={11}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity"
+                      size={12}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-secondary-light"
                     />
                   </a>
                 </li>
@@ -96,40 +112,40 @@ export default function Footer() {
 
           {/* ── Column 3: Company + Legal ── */}
           <div>
-            <h4 className="font-heading font-bold text-[15px] mb-4 text-white">
+            <h4 className="font-heading font-bold text-[15px] mb-5 text-brand-secondary-light uppercase tracking-wider">
               Company
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="flex items-center gap-1 text-[13px] text-gray-400 hover:text-gold transition-colors group"
+                    className="flex items-center gap-1.5 text-[14px] text-white/70 hover:text-white transition-colors group"
                   >
                     {link.label}
                     <ArrowUpRight
-                      size={11}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity"
+                      size={12}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-secondary-light"
                     />
                   </a>
                 </li>
               ))}
             </ul>
 
-            <h4 className="font-heading font-bold text-[15px] mt-6 mb-4 text-white">
+            <h4 className="font-heading font-bold text-[15px] mt-8 mb-5 text-brand-secondary-light uppercase tracking-wider">
               Legal
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {FOOTER_LINKS.legal.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="flex items-center gap-1 text-[13px] text-gray-400 hover:text-gold transition-colors group"
+                    className="flex items-center gap-1.5 text-[14px] text-white/70 hover:text-white transition-colors group"
                   >
                     {link.label}
                     <ArrowUpRight
-                      size={11}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity"
+                      size={12}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-secondary-light"
                     />
                   </a>
                 </li>
@@ -139,14 +155,21 @@ export default function Footer() {
 
           {/* ── Column 4: Map & CTA ── */}
           <div>
-            <h4 className="font-heading font-bold text-[15px] mb-4 text-white">
+            <h4 className="font-heading font-bold text-[15px] mb-5 text-brand-secondary-light uppercase tracking-wider">
               Visit Our Branch
             </h4>
             {/* Map Placeholder */}
-            <div className="w-full h-36 rounded-xl bg-navy-light border border-white/10 flex items-center justify-center mb-4 overflow-hidden">
-              <div className="text-center px-4">
-                <MapPin size={22} className="text-gold mx-auto mb-1.5" />
-                <p className="text-[11px] text-gray-500 mb-1">
+            <div
+              className="w-full h-40 rounded-xl flex items-center justify-center mb-6 overflow-hidden relative"
+              style={{
+                background: "linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
+                border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: "inset 0 2px 10px rgba(0,0,0,0.2)",
+              }}
+            >
+              <div className="text-center px-4 relative z-10">
+                <MapPin size={24} className="text-brand-secondary-light mx-auto mb-2" />
+                <p className="text-[12px] text-white/80 font-medium mb-1">
                   T. Nagar, Chennai
                 </p>
                 <a
@@ -155,7 +178,7 @@ export default function Footer() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-[11px] text-gold hover:text-gold-light underline"
+                  className="inline-block text-[11px] text-brand-secondary hover:text-brand-secondary-light underline tracking-wide"
                 >
                   Open in Google Maps →
                 </a>
@@ -163,39 +186,36 @@ export default function Footer() {
             </div>
 
             {/* Quick Apply */}
-            <a
-              href="#hero-form"
-              className="block text-center w-full py-3 rounded-xl font-bold text-navy bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold shadow-gold transition-all duration-300 active:scale-[0.98] text-sm"
-            >
+            <Button href="#hero-form" className="w-full">
               Apply for a Loan Today
-            </a>
+            </Button>
           </div>
         </div>
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="border-t border-white/10">
-        <div className="section-container py-4 lg:py-5">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-3 text-[11px] text-gray-500">
+      <div className="border-t border-white/10 relative z-10">
+        <div className="section-container py-5 lg:py-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 text-[12px] text-white/60">
             <p className="flex-shrink-0">
               © {currentYear} Ponnazhagu Finance Pvt. Ltd. All rights reserved.
             </p>
-            <p className="text-center leading-relaxed max-w-xl">
-              <strong className="text-gray-400">Disclaimer:</strong> RBI
+            <p className="text-center leading-relaxed max-w-2xl px-4">
+              <strong className="text-white/80">Disclaimer:</strong> RBI
               registered NBFC. All loans subject to eligibility, documentation &
               T&C. Rates are indicative.{" "}
-              <span className="text-gray-400">{COMPANY.registrationInfo}</span>
+              <span className="text-white/60">{COMPANY.registrationInfo}</span>
             </p>
-            <p className="flex items-center gap-1 flex-shrink-0">
-              Made with <Heart size={11} className="text-maroon" /> in Tamil
+            {/* <p className="flex items-center gap-1.5 flex-shrink-0">
+              Made with <Heart size={12} fill="#DBBE7A" stroke="none" /> in Tamil
               Nadu
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
 
       {/* Spacer for mobile FAB */}
-      <div className="h-14 lg:hidden" />
+      <div className="h-[72px] lg:hidden" />
     </footer>
   );
 }
