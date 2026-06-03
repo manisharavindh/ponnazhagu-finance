@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────
+   Ponnazhagu Finance — Design System Tokens
+   ────────────────────────────────────────────── */
+
+@theme {
+  /* ── Brand Colors ── */
+  --color-maroon: #7A0616;
+  --color-maroon-dark: #5C0410;
+  --color-maroon-light: #9A1830;
+  --color-navy: #0F172A;
+  --color-navy-light: #1E293B;
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8CC6E;
+  --color-gold-dark: #C5A059;
+  --color-cream: #FAFAF9;
+  --color-warm-gray: #F5F5F4;
+  --color-warm-gray-dark: #E7E5E4;
+
+  /* ── Fonts ── */
+  --font-heading: "Poppins", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", "Poppins", system-ui, sans-serif;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 2px 16px 0 rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 8px 32px 0 rgba(15, 23, 42, 0.10);
+  --shadow-gold: 0 4px 20px 0 rgba(212, 175, 55, 0.22);
+  --shadow-fab: 0 -2px 16px 0 rgba(122, 6, 22, 0.25);
+}
+
+/* ──────────────────────────────────────────────
+   Global Base Styles
+   ────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  /* margin: 0; */
+  /* padding: 0; */
+  /* box-sizing: border-box; */
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-navy);
+  background: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+}
+
+/* ──────────────────────────────────────────────
+   Gold Divider / Accent
+   ────────────────────────────────────────────── */
+
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1.25rem auto;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: "";
+  height: 1px;
+  width: 48px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.gold-divider-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   Range Slider Styling
+   ────────────────────────────────────────────── */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-warm-gray-dark);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-maroon);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(122, 6, 22, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(122, 6, 22, 0.4);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-maroon);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(122, 6, 22, 0.3);
+  cursor: pointer;
+}
+
+/* ──────────────────────────────────────────────
+   Animations
+   ────────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-gold {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      var(--color-gold-dark) 0%,
+      var(--color-gold-light) 50%,
+      var(--color-gold-dark) 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────
+   Layout Container
+   ────────────────────────────────────────────── */
+
+.section-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Glass effect for mobile nav overlay */
+.glass-overlay {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ──────────────────────────────────────────────
+   Number input spinner removal
+   ────────────────────────────────────────────── */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
