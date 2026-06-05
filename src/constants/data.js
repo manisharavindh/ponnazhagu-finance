@@ -27,21 +27,23 @@ export const NAV_LINKS = [
 
 export const SERVICE_DROPDOWN = [
   { label: "Gold Loan", href: "#services" },
-  { label: "Business / Micro Finance", href: "#services" },
-  { label: "Personal / Salary Loan", href: "#services" },
-  { label: "Vehicle Loan", href: "#services" },
-  { label: "Savings / Fixed Schemes", href: "#services" },
+  { label: "Silver Loan", href: "#services" },
+  { label: "More", href: "#services" },
+  // { label: "Business / Micro Finance", href: "#services" },
+  // { label: "Personal / Salary Loan", href: "#services" },
+  // { label: "Vehicle Loan", href: "#services" },
+  // { label: "Savings / Fixed Schemes", href: "#services" },
 ];
 
 export const HERO = {
   headline: "Your Trusted Financial Partner for Growth & Prosperity",
   subheadline:
-    "Low Interest Rates • Minimal Documentation • Quick Same-Day Approval",
+    "Low Interest Rates • Minimal Documentation • Quick Approval",
   traits: [
-    "Interest rates starting from 0.75% per month",
+    "Interest rates starting from 0.75%",
     "Loan approval in just 30 minutes",
     "100% safe & insured gold storage",
-    "No hidden charges – complete transparency",
+    "No hidden charges",
   ],
   ctaText: "Apply Now",
 };
@@ -59,6 +61,20 @@ export const SERVICES = [
       "Flexible repayment options",
     ],
     color: "#D4AF37",
+    isActive: true,
+  },
+  {
+    id: "silver-loan",
+    icon: "Coins",
+    title: "Silver Loan",
+    highlight: "Instant Cash for Silver Articles & Bars",
+    benefits: [
+      "High valuation for pure silver",
+      "100% secure vault storage",
+      "Instant disbursal within 30 minutes",
+      "Flexible repayment options",
+    ],
+    color: "#E2E8F0",
     isActive: true,
   },
   {
@@ -178,10 +194,12 @@ export const FAQ_DATA = [
 export const LOAN_TYPES = [
   { value: "", label: "Select Loan Type" },
   { value: "gold-loan", label: "Gold Loan" },
-  { value: "business-loan", label: "Business / Micro Finance" },
-  { value: "personal-loan", label: "Personal / Salary Loan" },
-  { value: "vehicle-loan", label: "Vehicle Loan" },
-  { value: "savings-scheme", label: "Savings / Fixed Scheme" },
+  { value: "silver-loan", label: "Silver Loan" },
+  { value: "more", label: "More" },
+  // { value: "business-loan", label: "Business / Micro Finance" },
+  // { value: "personal-loan", label: "Personal / Salary Loan" },
+  // { value: "vehicle-loan", label: "Vehicle Loan" },
+  // { value: "savings-scheme", label: "Savings / Fixed Scheme" },
 ];
 
 export const CALCULATOR_CONFIG = {

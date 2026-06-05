@@ -12,12 +12,13 @@ function formatINR(num) {
   }).format(num);
 }
 
-function useCalculator(config) {
-  const [amount, setAmount] = useState(config.defaultAmount);
-  const [tenure, setTenure] = useState(config.defaultTenure);
+function useCalculator(initialAmount, initialTenure, initialInterest) {
+  const [amount, setAmount] = useState(initialAmount);
+  const [tenure, setTenure] = useState(initialTenure);
+  const [interestRate, setInterestRate] = useState(initialInterest);
 
   const result = useMemo(() => {
-    const monthlyRate = config.interestRate / 100;
+    const monthlyRate = interestRate / 100;
     const totalInterest = amount * monthlyRate * tenure;
     const totalRepayment = amount + totalInterest;
     const emi = totalRepayment / tenure;
@@ -25,11 +26,11 @@ function useCalculator(config) {
       emi: Math.round(emi),
       totalInterest: Math.round(totalInterest),
       totalRepayment: Math.round(totalRepayment),
-      interestRate: config.interestRate,
+      interestRate: interestRate,
     };
-  }, [amount, tenure, config.interestRate]);
+  }, [amount, tenure, interestRate]);
 
-  return { amount, setAmount, tenure, setTenure, result };
+  return { amount, setAmount, tenure, setTenure, interestRate, setInterestRate, result };
 }
 
 const DonutChart = ({ principal, interest }) => {
@@ -41,7 +42,7 @@ const DonutChart = ({ principal, interest }) => {
   const principalOffset = circumference - (principalPercent / 100) * circumference;
 
   return (
-    <div className="relative w-40 h-40 mx-auto mb-8">
+    <div className="relative w-40 h-40 mx-auto">
       <svg className="w-full h-full transform -rotate-90 drop-shadow-lg" viewBox="0 0 140 140">
         {/* Background Circle (Total Interest - Cream/White) */}
         <circle
@@ -76,17 +77,14 @@ const DonutChart = ({ principal, interest }) => {
 };
 
 export default function Calculator() {
-  const [activeTab, setActiveTab] = useState("goldLoan");
-  const config = CALCULATOR_CONFIG[activeTab];
-
-  const tabs = [
-    { key: "goldLoan", label: "Gold Loan Estimator" },
-    { key: "emiCalculator", label: "EMI Calculator" },
-  ];
+  const config = CALCULATOR_CONFIG["emiCalculator"];
 
   // We lift state up here so the entire 2-column layout can read it
-  const { amount, setAmount, tenure, setTenure, result } = useCalculator(config);
-  const [purity, setPurity] = useState("22K");
+  const { amount, setAmount, tenure, setTenure, interestRate, setInterestRate, result } = useCalculator(
+    config.defaultAmount,
+    config.defaultTenure,
+    config.interestRate
+  );
 
   return (
     <section id="calculator" className="bg-brand-bg-warm py-14 sm:py-16 lg:py-24">
@@ -105,7 +103,7 @@ export default function Calculator() {
             Financial Calculators
           </span> */}
           <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
-            Plan Your Finances With Confidence
+            Plan Your Finances
             {/* <span className="text-brand-text-dark"></span> */}
           </h2>
           <div className="gold-divider">
@@ -124,58 +122,11 @@ export default function Calculator() {
             {/* ── Left Column: Tactile Input Panel ── */}
             <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
 
-              {/* Skeuomorphic Tabs */}
-              <div className="flex bg-stone-200/60 p-1.5 gap-1.5 rounded-xl shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)] mb-8">
-                {tabs.map((tab) => {
-                  const isActive = activeTab === tab.key;
-                  return (
-                    <button
-                      key={tab.key}
-                      onClick={() => {
-                        setActiveTab(tab.key);
-                        setAmount(CALCULATOR_CONFIG[tab.key].defaultAmount);
-                        setTenure(CALCULATOR_CONFIG[tab.key].defaultTenure);
-                      }}
-                      className={`flex-1 py-3 text-[12px] font-bold uppercase tracking-wider transition-all duration-300 rounded-lg cursor-pointer ${isActive
-                        ? "text-brand-primary bg-white shadow-sm border border-black/5"
-                        : "text-brand-text-muted hover:text-brand-text-dark border border-transparent"
-                        }`}
-                    >
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-
               <div className="space-y-8">
-                {/* Purity Toggle (Only for Gold Loan) */}
-                {/* {activeTab === "goldLoan" && (
-                  <div>
-                    <div className="flex items-baseline justify-between mb-3">
-                      <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
-                        Gold Purity
-                      </label>
-                    </div>
-                    <div className="flex bg-stone-200 p-1.5 gap-1.5 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)]">
-                      {["22K", "24K"].map((p) => (
-                        <button
-                          key={p}
-                          onClick={() => setPurity(p)}
-                          className={`flex-1 py-2 text-[13px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 ${purity === p
-                            ? "bg-white text-brand-primary shadow-sm"
-                            : "text-brand-text-muted hover:text-brand-text-dark"
-                            }`}
-                        >
-                          {p}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )} */}
 
                 {/* Amount Slider */}
                 <div>
-                  <div className="flex items-baseline justify-between mb-4">
+                  <div className="flex items-center justify-between mb-4">
                     <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
                       Loan Amount
                     </label>
@@ -208,7 +159,7 @@ export default function Calculator() {
 
                 {/* Tenure Slider */}
                 <div>
-                  <div className="flex items-baseline justify-between mb-4">
+                  <div className="flex items-center justify-between mb-4">
                     <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
                       Tenure
                     </label>
@@ -240,24 +191,60 @@ export default function Calculator() {
                     <span>{config.maxTenure} mos</span>
                   </div>
                 </div>
+
+                {/* Interest Rate Slider */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
+                      Interest Rate
+                    </label>
+                    <span className="text-2xl font-heading font-extrabold text-brand-primary tabular-nums drop-shadow-sm">
+                      {interestRate.toFixed(2)}%
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0.75}
+                    max={2.00}
+                    step={0.05}
+                    value={interestRate}
+                    onChange={(e) => setInterestRate(Number(e.target.value))}
+                    className="w-full h-3 appearance-none rounded-full bg-stone-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] 
+                               [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 
+                               [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-b [&::-webkit-slider-thumb]:from-[#D4AF37] 
+                               [&::-webkit-slider-thumb]:to-[#B8942E] [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border 
+                               [&::-webkit-slider-thumb]:border-[#FDE08B] [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-6 
+                               [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-gradient-to-b [&::-moz-range-thumb]:from-[#D4AF37] 
+                               [&::-moz-range-thumb]:to-[#B8942E] [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-[#FDE08B] 
+                               [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none outline-none"
+                    aria-label="Interest Rate"
+                  />
+                  <div className="flex justify-between text-[11px] text-brand-text-muted mt-3 font-bold tabular-nums uppercase tracking-wide">
+                    <span>0.75%</span>
+                    <span>2.00%</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* ── Right Column: Digital Readout Board ── */}
-            <div className="bg-[#7A0616] p-6 sm:p-8 lg:p-10 flex flex-col justify-center relative shadow-[inset_0_4px_15px_rgba(0,0,0,0.3)] lg:shadow-[inset_4px_0_15px_rgba(0,0,0,0.3)]">
+            <div className="bg-brand-primary mandala-texture p-6 sm:p-8 lg:p-10 flex flex-col justify-center relative shadow-[inset_0_4px_15px_rgba(0,0,0,0.3)] lg:shadow-[inset_4px_0_15px_rgba(0,0,0,0.3)]">
 
-              <DonutChart principal={amount} interest={result.totalInterest} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-4 mb-8 items-center">
 
-              <div className="text-center mb-8">
-                <p className="text-white/70 text-[12px] font-bold uppercase tracking-widest mb-1.5">
-                  Monthly EMI
-                </p>
-                <p className="text-4xl lg:text-5xl font-heading font-black text-white tabular-nums drop-shadow-md">
-                  {formatINR(result.emi)}
-                </p>
+                <DonutChart principal={amount} interest={result.totalInterest} />
+
+                <div className="text-center w-full px-2">
+                  <p className="text-white/70 text-[12px] font-bold uppercase tracking-widest mb-1.5">
+                    Monthly EMI
+                  </p>
+                  <p className="text-3xl lg:text-4xl xl:text-[2.5rem] font-heading font-black text-white tabular-nums drop-shadow-md tracking-tight break-all sm:break-normal">
+                    {formatINR(result.emi)}
+                  </p>
+                </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-2 gap-4 mb-4">
                 <div className="bg-black/20 rounded-xl p-4 text-center border border-white/5 shadow-inner">
                   <p className="text-white/50 text-[10px] font-bold uppercase tracking-wider mb-1">
                     Total Principal
@@ -276,10 +263,16 @@ export default function Calculator() {
                 </div>
               </div>
 
-              <div className="text-center">
-                <p className="text-[12px] text-white/50 mb-5 font-medium tracking-wide">
-                  Calculated at {result.interestRate}% interest rate per month.
+              <div className="bg-black/20 rounded-xl p-4 text-center border border-white/5 shadow-inner mb-8">
+                <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">
+                  Total Repayment Amount
                 </p>
+                <p className="text-xl font-heading font-black text-[#D4AF37] tabular-nums">
+                  {formatINR(result.totalRepayment)}
+                </p>
+              </div>
+
+              <div className="text-center">
                 <Button href="#hero-form" className="w-full">
                   Apply for this Loan
                 </Button>
@@ -300,3 +293,4 @@ export default function Calculator() {
     </section>
   );
 }
+

@@ -25,18 +25,16 @@
   --color-navy-light: #1E293B;
 
   /* ── Fonts ── */
-  --font-heading: "Poppins", "Inter", system-ui, sans-serif;
-  --font-body: "Inter", "Poppins", system-ui, sans-serif;
+  --font-heading: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
 
   /* ── Multi-layered Shadows (Skeuomorphic Depth) ── */
   --shadow-card:
-    0 1px 2px rgba(28, 25, 23, 0.04),
-    0 4px 12px rgba(28, 25, 23, 0.06),
-    0 12px 32px rgba(28, 25, 23, 0.04);
+    0 10px 40px -10px rgba(122, 6, 22, 0.08),
+    0 4px 12px -4px rgba(0, 0, 0, 0.05);
   --shadow-card-hover:
-    0 2px 4px rgba(28, 25, 23, 0.05),
-    0 8px 24px rgba(28, 25, 23, 0.08),
-    0 24px 48px rgba(28, 25, 23, 0.06);
+    0 20px 40px -10px rgba(122, 6, 22, 0.12),
+    0 8px 24px -8px rgba(0, 0, 0, 0.08);
   --shadow-gold:
     0 2px 8px rgba(197, 160, 89, 0.25),
     0 8px 24px rgba(197, 160, 89, 0.15);
@@ -241,7 +239,6 @@ h6 {
     var(--shadow-card-hover),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border-color: rgba(197, 160, 89, 0.3);
-  transform: translateY(-2px);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -276,6 +273,11 @@ h6 {
 .skeuo-icon-navy {
   background: linear-gradient(145deg, #2D3A4F, #0F172A);
   border: 1px solid rgba(30, 41, 59, 0.5);
+}
+
+.skeuo-icon-silver {
+  background: linear-gradient(145deg, #F8FAFC, #94A3B8);
+  border: 1px solid rgba(148, 163, 184, 0.4);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -457,15 +459,15 @@ input[type="number"] {
 
 .input-premium {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 0.625rem;
-  border: 1.5px solid var(--color-brand-border);
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(28, 25, 23, 0.08);
   background: #FFFFFF;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--color-brand-text-dark);
-  box-shadow: var(--shadow-inset-soft);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
   outline: none;
 }
 
@@ -480,9 +482,7 @@ input[type="number"] {
 
 .input-premium:focus {
   border-color: var(--color-brand-secondary);
-  box-shadow:
-    var(--shadow-inset-soft),
-    0 0 0 3px rgba(197, 160, 89, 0.12);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02), 0 0 0 3px rgba(197, 160, 89, 0.15);
 }
 
 .input-premium-error {

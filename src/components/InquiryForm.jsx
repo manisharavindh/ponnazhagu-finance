@@ -76,7 +76,7 @@ export default function InquiryForm() {
       {/* Header */}
       <div className="mb-5">
         <div
-          className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase mb-2"
+          className="inline-block px-3 py-1 rounded text-[11px] font-bold uppercase mb-2"
           style={{
             background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.05))",
             color: "#7A0616",
