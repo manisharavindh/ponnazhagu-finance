@@ -4,7 +4,7 @@ import InquiryForm from "./InquiryForm";
 
 const TRAIT_ICONS = [TrendingUp, Zap, ShieldCheck, CheckCircle];
 
-export default function Hero() {
+export default function Hero({ openLegalModal }) {
   return (
     <section id="home" className="relative overflow-hidden bg-slate-50 heritage-pattern">
       {/* Gold accent line */}
@@ -25,7 +25,7 @@ export default function Hero() {
                 background: "rgba(122, 6, 22, 0.04)",
                 borderColor: "rgba(122, 6, 22, 0.1)",
               }}>
-              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#14b489] animate-pulse" />
               <span className="text-[11px] font-semibold text-brand-primary uppercase tracking-[0.12em]">
                 Government Approved
               </span>
@@ -95,7 +95,7 @@ export default function Hero() {
 
           {/* ── Right: Inquiry Form (5 cols) ── */}
           <div className="lg:col-span-5">
-            <InquiryForm />
+            <InquiryForm openLegalModal={openLegalModal} />
           </div>
         </div>
       </div>

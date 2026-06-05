@@ -10,8 +10,8 @@ export const COMPANY = {
   tagline: "Your Trusted Financial Partner for Growth & Prosperity",
   phone: "+91 99446 34006",
   whatsapp: "+91 99446 34006",
-  email: "[EMAIL_ADDRESS]",
-  address: "No. 12, Ranganathan Street, T. Nagar, Chennai – 600017, Tamil Nadu",
+  email: "ponnazhagufinance@gmail.com",
+  address: "69/1, Muthur road, Kollangudi revenue village, Sivagangai District, Tamil Nadu - 630551",
   branchTimings: "Mon – Sat: 10:00 AM – 4:00 PM",
   founded: "1998",
   registrationInfo: "RBI Registered NBFC | CIN: U65910TN1998PLC012345",
@@ -139,12 +139,12 @@ export const TRUST_BADGES = [
   {
     icon: "ShieldCheck",
     title: "100% Safe & Insured",
-    description: "Gold stored in bank-grade vaults with full insurance coverage",
+    description: "Gold stored in high-grade vaults with full insurance coverage",
   },
   {
     icon: "Eye",
     title: "Transparent Schemes",
-    description: "No hidden charges – every fee and rate disclosed upfront",
+    description: "No hidden charges, every fee and rate disclosed upfront",
   },
   {
     icon: "Clock",
@@ -153,8 +153,8 @@ export const TRUST_BADGES = [
   },
   {
     icon: "Award",
-    title: "Govt. Registered NBFC",
-    description: "RBI registered, fully compliant with all regulatory guidelines",
+    title: "Government Approved",
+    description: "Licensed and regulated properly. Complete peace of mind.",
   },
 ];
 
@@ -162,12 +162,12 @@ export const FAQ_DATA = [
   {
     question: "What documents are needed for a Gold Loan?",
     answer:
-      "You need a valid government-issued photo ID (Aadhaar Card, Voter ID, or Passport) and the gold ornaments you wish to pledge. No income proof or ITR is required. The entire process takes under 30 minutes.",
+      "You need a valid government-issued photo ID (Aadhaar Card, Voter ID, or Passport) and the gold ornaments you wish to pledge. The entire process takes under 30 minutes.",
   },
   {
     question: "How is the gold valued for the loan amount?",
     answer:
-      "Our certified appraisers evaluate your gold based on purity (carats) and current market rates. We use digital karat meters for transparent assessment. You receive the industry-best value per gram with no hidden deductions.",
+      "We evaluate your gold based on purity (carats) and current market rates. We use digital karat meters for transparent assessment. You receive the industry-best value per gram with no hidden deductions.",
   },
   {
     question: "Are there any processing fees or hidden charges?",
@@ -182,12 +182,12 @@ export const FAQ_DATA = [
   {
     question: "Is my gold safe during the loan period?",
     answer:
-      "Absolutely. Your gold is stored in bank-grade, fireproof vaults with 24/7 CCTV surveillance. Every gram is fully insured against theft, fire, and natural calamities. You receive a detailed sealed receipt at the time of pledging.",
+      "Absolutely. Your gold is stored in high-grade, fireproof vaults with 24/7 CCTV surveillance. You receive a detailed sealed receipt at the time of pledging.",
   },
   {
-    question: "What are the interest rates for Personal/Salary Loans?",
+    question: "What happens if the loan or interest is not paid by the due date?",
     answer:
-      "Interest rates for personal and salary loans start from 1.25% per month (15% p.a.), depending on your income, employer category, and credit profile. Salaried individuals from listed companies enjoy preferential rates.",
+      "If the principal amount or interest is not paid by the given due date, despite repeated reminders, the pledged gold or silver may be auctioned to recover the outstanding dues as per our terms and conditions.",
   },
 ];
 
@@ -230,10 +230,9 @@ export const CALCULATOR_CONFIG = {
 export const FOOTER_LINKS = {
   services: [
     { label: "Gold Loan", href: "#services" },
+    { label: "Silver Loan", href: "#services" },
     { label: "Business / Micro Finance", href: "#services" },
     { label: "Personal / Salary Loan", href: "#services" },
-    { label: "Vehicle Loan", href: "#services" },
-    { label: "Savings / Fixed Schemes", href: "#services" },
   ],
   company: [
     { label: "About Us", href: "#about" },

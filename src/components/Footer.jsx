@@ -9,7 +9,7 @@ import {
 import { COMPANY, FOOTER_LINKS } from "../constants/data";
 import Button from "./ui/Button";
 
-export default function Footer() {
+export default function Footer({ openLegalModal }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -53,11 +53,6 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-            <p className="text-white/80 text-[13px] leading-relaxed mb-6 max-w-sm">
-              Your trusted financial partner since {COMPANY.founded}. RBI
-              registered NBFC serving families and businesses across Tamil Nadu
-              with integrity and transparency.
-            </p>
             {/* Contact Details */}
             <div className="space-y-3">
               <a
@@ -112,7 +107,7 @@ export default function Footer() {
 
           {/* ── Column 3: Company + Legal ── */}
           <div>
-            <h4 className="font-heading font-bold text-[15px] mb-5 text-brand-secondary-light uppercase tracking-wider">
+            {/* <h4 className="font-heading font-bold text-[15px] mb-5 text-brand-secondary-light uppercase tracking-wider">
               Company
             </h4>
             <ul className="space-y-3">
@@ -130,24 +125,41 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-            </ul>
+            </ul> */}
 
-            <h4 className="font-heading font-bold text-[15px] mt-8 mb-5 text-brand-secondary-light uppercase tracking-wider">
+            <h4 className="font-heading font-bold text-[15px] mb-5 text-brand-secondary-light uppercase tracking-wider">
               Legal
             </h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.legal.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="flex items-center gap-1.5 text-[14px] text-white/70 hover:text-white transition-colors group"
-                  >
-                    {link.label}
-                    <ArrowUpRight
-                      size={12}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-secondary-light"
-                    />
-                  </a>
+                  {link.label === "Privacy Policy" || link.label === "Terms & Conditions" ? (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (link.label === "Privacy Policy") openLegalModal?.("privacy");
+                        else openLegalModal?.("terms");
+                      }}
+                      className="flex items-center gap-1.5 text-[14px] text-white/70 hover:text-white transition-colors group text-left"
+                    >
+                      {link.label}
+                      <ArrowUpRight
+                        size={12}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-secondary-light"
+                      />
+                    </button>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-1.5 text-[14px] text-white/70 hover:text-white transition-colors group"
+                    >
+                      {link.label}
+                      <ArrowUpRight
+                        size={12}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-secondary-light"
+                      />
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -170,7 +182,7 @@ export default function Footer() {
               <div className="text-center px-4 relative z-10">
                 <MapPin size={24} className="text-brand-secondary-light mx-auto mb-2" />
                 <p className="text-[12px] text-white/80 font-medium mb-1">
-                  T. Nagar, Chennai
+                  Sivagangai, Tamil Nadu
                 </p>
                 <a
                   href={`https://maps.google.com/?q=${encodeURIComponent(
@@ -187,7 +199,7 @@ export default function Footer() {
 
             {/* Quick Apply */}
             <Button href="#hero-form" className="w-full">
-              Apply for a Loan Today
+              Apply Today
             </Button>
           </div>
         </div>
@@ -198,12 +210,10 @@ export default function Footer() {
         <div className="section-container py-5 lg:py-6">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4 text-[12px] text-white/60">
             <p className="flex-shrink-0">
-              © {currentYear} Ponnazhagu Finance Pvt. Ltd. All rights reserved.
+              © {currentYear} Ponnazhagu Finance. All rights reserved.
             </p>
             <p className="text-center leading-relaxed max-w-2xl px-4">
-              <strong className="text-white/80">Disclaimer:</strong> RBI
-              registered NBFC. All loans subject to eligibility, documentation &
-              T&C. Rates are indicative.{" "}
+              <strong className="text-white/80">Disclaimer:</strong> Please be aware of unfair practices like fraudulent phone calls and e-mails asking for personal information.
               <span className="text-white/60">{COMPANY.registrationInfo}</span>
             </p>
             {/* <p className="flex items-center gap-1.5 flex-shrink-0">

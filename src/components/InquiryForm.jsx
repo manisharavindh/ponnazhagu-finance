@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LOAN_TYPES } from "../constants/data";
 import Button from "./ui/Button";
 
-export default function InquiryForm() {
+export default function InquiryForm({ openLegalModal }) {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -76,7 +76,7 @@ export default function InquiryForm() {
       {/* Header */}
       <div className="mb-5">
         <div
-          className="inline-block px-3 py-1 rounded text-[11px] font-bold uppercase mb-2"
+          className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase mb-2"
           style={{
             background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.05))",
             color: "#7A0616",
@@ -177,9 +177,9 @@ export default function InquiryForm() {
 
         <p className="text-[11px] text-brand-text-muted text-center leading-snug pt-0.5">
           By submitting, you agree to our{" "}
-          <a href="#" className="text-brand-primary underline">Terms</a>{" "}
+          <button type="button" onClick={() => openLegalModal?.("terms")} className="text-brand-primary underline">Terms</button>{" "}
           &{" "}
-          <a href="#" className="text-brand-primary underline">Privacy Policy</a>.
+          <button type="button" onClick={() => openLegalModal?.("privacy")} className="text-brand-primary underline">Privacy Policy</button>.
           We'll contact you at the number provided.
         </p>
       </form>
