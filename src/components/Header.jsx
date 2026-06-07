@@ -47,8 +47,8 @@ export default function Header() {
   return (
     <>
       {/* ── Utility Top Bar ── */}
-      <div className="hidden lg:block bg-brand-primary text-white/90 text-[13px]">
-        <div className="section-container flex items-center justify-between py-2">
+      <div className="hidden lg:block bg-brand-primary text-white/90 text-[13px] mandala-texture">
+        <div className="section-container flex items-center justify-between py-2 relative z-10">
           <div className="flex items-center gap-8">
             <span className="flex items-center gap-2 text-white/70">
               <Clock size={13} className="text-brand-secondary" />
