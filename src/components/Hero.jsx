@@ -78,8 +78,8 @@ export default function Hero({ openLegalModal }) {
             <div className="flex items-center divide-x divide-brand-border/60 pt-6 mt-2 border-t border-brand-border/60">
               {[
                 { value: "5+", label: "Years of Trust" },
-                { value: "20K+", label: "Happy Customers" },
-                { value: "₹5Cr+", label: "Loans Disbursed" },
+                { value: "2K+", label: "Happy Customers" },
+                { value: "₹1.5Cr+", label: "Loans Disbursed" },
               ].map((stat, idx) => (
                 <div key={stat.label} className={`px-4 sm:px-6 ${idx === 0 ? 'pl-0' : ''}`}>
                   <div className="text-2xl lg:text-3xl font-heading font-extrabold text-brand-primary leading-none mb-1.5">

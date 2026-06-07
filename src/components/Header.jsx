@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { COMPANY, NAV_LINKS, SERVICE_DROPDOWN } from "../constants/data";
 import Button from "./ui/Button";
+import logo from "../assets/logo.png";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -53,13 +54,24 @@ export default function Header() {
               <Clock size={13} className="text-brand-secondary" />
               {COMPANY.branchTimings}
             </span>
-            <a
-              href={`tel:${COMPANY.phone}`}
-              className="flex items-center gap-2 text-white/70 hover:text-brand-secondary transition-colors duration-300"
-            >
-              <Phone size={13} className="text-brand-secondary" />
-              {COMPANY.phone}
-            </a>
+            <div className="flex items-center gap-4">
+              <a
+                href={`tel:${COMPANY.phone}`}
+                className="flex items-center gap-2 text-white/70 hover:text-brand-secondary transition-colors duration-300"
+              >
+                <Phone size={13} className="text-brand-secondary" />
+                {COMPANY.phone}
+              </a>
+              {COMPANY.phone2 && (
+                <a
+                  href={`tel:${COMPANY.phone2}`}
+                  className="flex items-center gap-2 text-white/70 hover:text-brand-secondary transition-colors duration-300"
+                >
+                  <Phone size={13} className="text-brand-secondary" />
+                  {COMPANY.phone2}
+                </a>
+              )}
+            </div>
           </div>
           <button
             className="flex items-center gap-2 text-white/70 hover:text-brand-secondary transition-colors duration-300 cursor-pointer"
@@ -82,15 +94,8 @@ export default function Header() {
         <div className="section-container flex items-center justify-between h-16 lg:h-[70px]">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2.5 group" onClick={handleNavClick}>
-            <div
-              className="w-10 h-10 lg:w-11 lg:h-11 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{
-                background: "linear-gradient(145deg, #DBBE7A, #A88940)",
-                boxShadow: "0 2px 8px rgba(197,160,89,0.35), inset 0 1px 0 rgba(255,255,255,0.3)",
-                border: "1px solid rgba(255,255,255,0.2)",
-              }}
-            >
-              <span className="text-white font-heading font-black text-lg lg:text-xl drop-shadow-sm">₹</span>
+            <div className="w-12 h-12 lg:w-14 lg:h-14 flex-shrink-0 overflow-hidden">
+              <img src={logo} alt={`${COMPANY.name} Logo`} className="w-full h-full object-contain" />
             </div>
             <div className="leading-tight">
               <span className="block font-heading font-extrabold text-brand-primary text-lg lg:text-xl tracking-tight">
@@ -178,12 +183,22 @@ export default function Header() {
               <Button href="#hero-form" onClick={handleNavClick} className="w-full">
                 Apply Now
               </Button>
-              <a
-                href={`tel:${COMPANY.phone}`}
-                className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-white border-2 border-brand-secondary/40 hover:border-brand-secondary transition-colors duration-300"
-              >
-                <Phone size={18} /> Call Us
-              </a>
+              <div className="flex flex-col gap-2">
+                <a
+                  href={`tel:${COMPANY.phone}`}
+                  className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-white border-2 border-brand-secondary/40 hover:border-brand-secondary transition-colors duration-300"
+                >
+                  <Phone size={18} /> Call {COMPANY.phone}
+                </a>
+                {COMPANY.phone2 && (
+                  <a
+                    href={`tel:${COMPANY.phone2}`}
+                    className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-white border-2 border-brand-secondary/40 hover:border-brand-secondary transition-colors duration-300"
+                  >
+                    <Phone size={18} /> Call {COMPANY.phone2}
+                  </a>
+                )}
+              </div>
             </div>
             <div className="mt-auto pt-8 text-center text-white/40 text-sm">
               <p className="flex items-center justify-center gap-2">

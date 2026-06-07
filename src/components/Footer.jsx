@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { COMPANY, FOOTER_LINKS } from "../constants/data";
 import Button from "./ui/Button";
+import logo from "../assets/logo.png";
 
 export default function Footer({ openLegalModal }) {
   const currentYear = new Date().getFullYear();
@@ -29,17 +30,8 @@ export default function Footer({ openLegalModal }) {
           <div className="sm:col-span-2 lg:col-span-1">
             {/* Logo */}
             <div className="flex items-center gap-3 mb-6">
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: "linear-gradient(145deg, #DBBE7A, #A88940)",
-                  boxShadow: "0 4px 12px rgba(28,25,23,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
-                  border: "2px solid rgba(255,255,255,0.2)",
-                }}
-              >
-                <span className="text-white font-heading font-black text-xl drop-shadow-md">
-                  ₹
-                </span>
+              <div className="w-14 h-14 lg:w-16 lg:h-16 flex-shrink-0 overflow-hidden">
+                <img src={logo} alt={`${COMPANY.name} Logo`} className="w-full h-full object-contain" />
               </div>
               <div className="leading-tight">
                 <span className="block font-heading font-extrabold text-white text-xl tracking-tight drop-shadow-sm">
@@ -64,6 +56,17 @@ export default function Footer({ openLegalModal }) {
                 </div>
                 {COMPANY.phone}
               </a>
+              {COMPANY.phone2 && (
+                <a
+                  href={`tel:${COMPANY.phone2}`}
+                  className="flex items-center gap-3 text-[13px] text-white/80 hover:text-brand-secondary-light transition-colors"
+                >
+                  <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <Phone size={13} className="text-brand-secondary-light" />
+                  </div>
+                  {COMPANY.phone2}
+                </a>
+              )}
               <a
                 href={`mailto:${COMPANY.email}`}
                 className="flex items-center gap-3 text-[13px] text-white/80 hover:text-brand-secondary-light transition-colors"
@@ -212,10 +215,9 @@ export default function Footer({ openLegalModal }) {
             <p className="flex-shrink-0">
               © {currentYear} Ponnazhagu Finance. All rights reserved.
             </p>
-            <p className="text-center leading-relaxed max-w-2xl px-4">
+            {/* <p className="text-center leading-relaxed max-w-2xl px-4">
               <strong className="text-white/80">Disclaimer:</strong> Please be aware of unfair practices like fraudulent phone calls and e-mails asking for personal information.
-              <span className="text-white/60">{COMPANY.registrationInfo}</span>
-            </p>
+            </p> */}
             {/* <p className="flex items-center gap-1.5 flex-shrink-0">
               Made with <Heart size={12} fill="#DBBE7A" stroke="none" /> in Tamil
               Nadu

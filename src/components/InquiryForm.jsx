@@ -75,16 +75,6 @@ export default function InquiryForm({ openLegalModal }) {
     <div id="hero-form" className="skeuo-card p-6 sm:p-7 lg:p-8">
       {/* Header */}
       <div className="mb-5">
-        <div
-          className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase mb-2"
-          style={{
-            background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.05))",
-            color: "#7A0616",
-            letterSpacing: "0.12em",
-          }}
-        >
-          Quick Inquiry
-        </div>
         <h3 className="text-lg lg:text-xl font-heading font-bold text-brand-text-dark leading-tight">
           Check Your Eligibility
         </h3>
