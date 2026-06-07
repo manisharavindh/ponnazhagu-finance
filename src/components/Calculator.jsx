@@ -228,7 +228,7 @@ export default function Calculator() {
             </div>
 
             {/* ── Right Column: Digital Readout Board ── */}
-            <div className="bg-brand-primary mandala-texture p-6 sm:p-8 lg:p-10 flex flex-col justify-center relative shadow-[inset_0_4px_15px_rgba(0,0,0,0.3)] lg:shadow-[inset_4px_0_15px_rgba(0,0,0,0.3)]">
+            <div className="bg-brand-primary mandala-texture p-6 sm:p-8 lg:p-10 flex flex-col justify-center relative shadow-[inset_0_4px_15px_rgba(0,0,0,0.3)] lg:shadow-[inset_4px_0_15px_rgba(0,0,0,0.3)] cal-right-sdie">
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-4 mb-8 items-center">
 

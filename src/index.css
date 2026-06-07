@@ -495,3 +495,419 @@ input[type="number"] {
     var(--shadow-inset-soft),
     0 0 0 3px rgba(239, 68, 68, 0.1);
 }
+
+/* ══════════════════════════════════════════════════════════
+   Footer — Premium Heritage Design (Compact & Ornate)
+   ══════════════════════════════════════════════════════════ */
+
+.footer-root {
+  background: #160404;
+  color: #D4C5A9;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Vignette/radial overlays for depth */
+.footer-root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(90, 4, 16, 0.65) 0%, transparent 100%),
+    radial-gradient(ellipse at 85% 50%, rgba(90, 4, 16, 0.5) 0%, transparent 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(90, 4, 16, 0.45) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle heritage pattern overlay */
+.footer-root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-conic-gradient(from 0deg at 50% 50%, #C5A059 0deg 30deg, transparent 30deg 60deg);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Ornate gold top border ── */
+.footer-gold-border {
+  position: relative;
+  z-index: 2;
+  height: 6px;
+  background: linear-gradient(180deg, #2A0808 0%, #1A0505 100%);
+}
+
+.footer-gold-border-inner {
+  height: 3px;
+  background: linear-gradient(90deg,
+      #8B6D2F 0%,
+      #A88940 10%,
+      #DBBE7A 30%,
+      #E8D48B 50%,
+      #DBBE7A 70%,
+      #A88940 90%,
+      #8B6D2F 100%);
+  box-shadow:
+    0 1px 8px rgba(197, 160, 89, 0.5),
+    0 0 20px rgba(197, 160, 89, 0.15);
+}
+
+/* ── Content wrapper ── */
+.footer-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer-content {
+    padding: 2rem 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-content {
+    padding: 2.25rem 2.5rem 1.75rem;
+  }
+}
+
+/* ── Decorative inner frame ── */
+.footer-inner-frame {
+  position: relative;
+  padding: 1.75rem 1.25rem;
+  border: 1px solid rgba(197, 160, 89, 0.18);
+}
+
+@media (min-width: 1024px) {
+  .footer-inner-frame {
+    padding: 2.25rem 2rem;
+  }
+}
+
+/* ── Ornate SVG corners ── */
+.footer-ornate-corner {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.footer-corner-tl {
+  top: -4px;
+  left: -4px;
+}
+
+.footer-corner-tr {
+  top: -4px;
+  right: -4px;
+  transform: scaleX(-1);
+}
+
+.footer-corner-bl {
+  bottom: -4px;
+  left: -4px;
+  transform: scaleY(-1);
+}
+
+.footer-corner-br {
+  bottom: -4px;
+  right: -4px;
+  transform: scale(-1, -1);
+}
+
+/* ── 5-column grid ── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1.3fr 1.6fr 1fr 1.1fr 1.15fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+/* ── Column base ── */
+.footer-col {
+  min-width: 0;
+}
+
+/* ── Section headings ── */
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #DBBE7A;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* ── Brand column ── */
+.footer-col-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.footer-brand-name {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  color: #DBBE7A;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  font-variant: small-caps;
+}
+
+.footer-tagline {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #B0A48E;
+  margin-bottom: 0.875rem;
+}
+
+.footer-social-row {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.footer-social-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #DBBE7A;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.footer-social-icon:hover {
+  background: rgba(197, 160, 89, 0.12);
+  border-color: #DBBE7A;
+  color: #E8D48B;
+}
+
+/* ── Contact column ── */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.footer-contact-text {
+  line-height: 1.55;
+}
+
+/* Gold circle wrapper for contact icons */
+.footer-contact-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.footer-contact-icon {
+  color: #DBBE7A;
+  flex-shrink: 0;
+}
+
+.footer-address {
+  color: #B0A48E;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  max-width: 240px;
+}
+
+/* ── Link lists (services, legal) ── */
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.footer-link {
+  color: #B0A48E;
+  text-decoration: none;
+  font-size: 0.8125rem;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: #DBBE7A;
+}
+
+.footer-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+}
+
+/* ── Branch column ── */
+.footer-col-branch {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-branch-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(197, 160, 89, 0.04);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: 6px;
+  padding: 1.125rem 0.875rem 1rem;
+  gap: 0.3rem;
+  /* inner glow */
+  box-shadow: inset 0 0 12px rgba(197, 160, 89, 0.06);
+}
+
+/* Ornate double-border effect on branch card */
+.footer-branch-card::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(197, 160, 89, 0.12);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.footer-branch-pin {
+  color: #DBBE7A;
+  margin-bottom: 0.125rem;
+  filter: drop-shadow(0 0 4px rgba(197, 160, 89, 0.35));
+}
+
+.footer-branch-location {
+  font-size: 0.8125rem;
+  color: #D4C5A9;
+  font-weight: 500;
+}
+
+.footer-branch-maps-link {
+  font-size: 0.75rem;
+  color: #C5A059;
+  text-decoration: none;
+  font-style: italic;
+  transition: color 0.2s ease;
+}
+
+.footer-branch-maps-link:hover {
+  color: #DBBE7A;
+}
+
+.footer-visit-btn {
+  display: inline-block;
+  margin-top: 0.625rem;
+  padding: 0.4375rem 1.25rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1A0505;
+  text-decoration: none;
+  background: linear-gradient(180deg, #DBBE7A 0%, #C5A059 50%, #B8923D 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 4px rgba(197, 160, 89, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.footer-visit-btn:hover {
+  background: linear-gradient(180deg, #E5CA8E 0%, #CEAC65 50%, #C09B4A 100%);
+  box-shadow:
+    0 3px 8px rgba(197, 160, 89, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ── Bottom copyright bar ── */
+.footer-bottom-bar {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(197, 160, 89, 0.15);
+  text-align: center;
+  padding: 0.875rem 1.25rem 1rem;
+}
+
+.footer-bottom-flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-flourish-line {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.4), transparent);
+}
+
+.footer-flourish-diamond {
+  font-size: 0.4375rem;
+  color: #C5A059;
+  line-height: 1;
+}
+
+.footer-bottom-bar p {
+  font-size: 0.7rem;
+  color: #DBBE7A;
+}

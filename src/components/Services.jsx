@@ -21,8 +21,8 @@ const ICON_CLASSES = {
   "silver-loan": "skeuo-icon-silver",
   "business-loan": "skeuo-icon-crimson",
   "personal-loan": "skeuo-icon-crimson",
-  "vehicle-loan": "skeuo-icon-gold",
-  "savings-schemes": "skeuo-icon-gold",
+  // "vehicle-loan": "skeuo-icon-gold",
+  // "savings-schemes": "skeuo-icon-gold",
 };
 
 export default function Services() {

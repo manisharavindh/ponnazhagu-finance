@@ -106,34 +106,34 @@ export const SERVICES = [
     color: "#7A0616",
     isActive: false,
   },
-  {
-    id: "vehicle-loan",
-    icon: "Car",
-    title: "Vehicle Loan",
-    highlight: "Two-Wheeler & Commercial Vehicle Funding",
-    benefits: [
-      "New & used vehicle financing",
-      "Up to 90% on-road price funding",
-      "Special rates for commercial vehicles",
-      "Hassle-free RC transfer assistance",
-    ],
-    color: "#0F172A",
-    isActive: false,
-  },
-  {
-    id: "savings-schemes",
-    icon: "PiggyBank",
-    title: "Savings / Fixed Schemes",
-    highlight: "Secure Returns for Your Family's Future",
-    benefits: [
-      "Attractive fixed deposit rates",
-      "Monthly, quarterly & annual payout",
-      "Senior citizen special rates",
-      "Nomination & auto-renewal facility",
-    ],
-    color: "#D4AF37",
-    isActive: false,
-  },
+  // {
+  //   id: "vehicle-loan",
+  //   icon: "Car",
+  //   title: "Vehicle Loan",
+  //   highlight: "Two-Wheeler & Commercial Vehicle Funding",
+  //   benefits: [
+  //     "New & used vehicle financing",
+  //     "Up to 90% on-road price funding",
+  //     "Special rates for commercial vehicles",
+  //     "Hassle-free RC transfer assistance",
+  //   ],
+  //   color: "#0F172A",
+  //   isActive: false,
+  // },
+  // {
+  //   id: "savings-schemes",
+  //   icon: "PiggyBank",
+  //   title: "Savings / Fixed Schemes",
+  //   highlight: "Secure Returns for Your Family's Future",
+  //   benefits: [
+  //     "Attractive fixed deposit rates",
+  //     "Monthly, quarterly & annual payout",
+  //     "Senior citizen special rates",
+  //     "Nomination & auto-renewal facility",
+  //   ],
+  //   color: "#D4AF37",
+  //   isActive: false,
+  // },
 ];
 
 export const TRUST_BADGES = [
