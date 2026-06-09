@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   Gem,
   Store,
@@ -21,58 +21,118 @@ const ICON_CLASSES = {
   "silver-loan": "skeuo-icon-silver",
   "business-loan": "skeuo-icon-crimson",
   "personal-loan": "skeuo-icon-crimson",
-  // "vehicle-loan": "skeuo-icon-gold",
-  // "savings-schemes": "skeuo-icon-gold",
 };
+
+function ServiceCard({ service }) {
+  const Icon = ICON_MAP[service.icon];
+  const iconClass = ICON_CLASSES[service.id] || ICON_CLASSES["gold-loan"];
+
+  if (service.isActive) {
+    return (
+      <div className="skeuo-card group w-[280px] md:w-[420px] h-full shrink-0 flex flex-col text-left p-6 md:p-8 relative transition-transform hover:-translate-y-1 hover:shadow-lg duration-300">
+        <div className="flex items-center gap-4 mb-5">
+          <div className={`skeuo-icon ${iconClass} transition-transform group-hover:scale-105 !w-14 !h-14 shrink-0`}>
+            {Icon && <Icon size={24} color="#FFFFFF" strokeWidth={1.8} />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-[15px] font-heading font-bold text-brand-text-dark group-hover:text-brand-primary transition-colors duration-350 leading-tight truncate whitespace-normal line-clamp-2">
+              {service.title}
+            </h3>
+            <p className="text-[9px] font-semibold text-brand-secondary-dark uppercase tracking-widest mt-1 truncate">
+              {service.highlight}
+            </p>
+          </div>
+        </div>
+
+        <div className="w-full h-[1px] bg-stone-200 mb-4 shrink-0" />
+
+        <ul className="space-y-2 mb-6 flex-1 overflow-y-auto pr-1">
+          {service.benefits.map((benefit, i) => (
+            <li key={i} className="flex items-start gap-2 text-[12px] text-brand-text-muted leading-snug">
+              <span className="text-[#C5A059] mt-[2px] leading-none text-[10px] shrink-0">♦</span>
+              <span className="break-words">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Button href="#hero-form" className="w-full text-xs py-2.5 mt-auto shrink-0">
+          Apply Now
+          <ArrowRight size={14} />
+        </Button>
+      </div>
+    );
+  } else {
+    return (
+      <div className="w-[280px] md:w-[420px] h-full shrink-0 flex flex-col text-left p-6 md:p-8 relative bg-brand-bg-warm/80 backdrop-blur-sm border border-white/30 shadow-md rounded-2xl grayscale-[30%] opacity-90 transition-transform hover:-translate-y-1 duration-300">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-stone-200 shadow-inner border border-stone-300/50 shrink-0">
+            {Icon && <Icon size={24} color="#78716C" strokeWidth={1.8} />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-[15px] font-heading font-bold text-stone-600 leading-tight truncate whitespace-normal line-clamp-2">
+              {service.title}
+            </h3>
+            <p className="text-[9px] font-semibold text-stone-500 uppercase tracking-widest mt-1 truncate">
+              {service.highlight}
+            </p>
+          </div>
+        </div>
+
+        <div className="w-full h-[1px] bg-stone-200 mb-4 opacity-50 shrink-0" />
+
+        <ul className="space-y-2 mb-6 flex-1 overflow-y-auto pr-1">
+          {service.benefits.map((benefit, i) => (
+            <li key={i} className="flex items-start gap-2 text-[12px] text-stone-400 leading-snug">
+              <span className="text-stone-300 mt-[2px] leading-none text-[10px] shrink-0">♦</span>
+              <span className="break-words">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto text-center w-full shrink-0">
+          <span className="block shadow-inner bg-stone-200/80 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold px-2 py-2.5 rounded-full border border-stone-300/50">
+            Coming Soon
+          </span>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default function Services() {
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = direction === "left" ? -340 : 340;
+      const scrollAmount = direction === "left" ? -296 : 296;
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
   return (
-    <section id="services" className="bg-brand-bg-cream py-10 sm:py-12 lg:py-16 overflow-hidden">
+    <section id="services" className="bg-brand-bg-cream py-6 sm:py-8 lg:py-10 overflow-hidden">
       <div className="section-container">
         {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-10 lg:mb-14">
-          {/* <span
-            className="inline-block px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase mb-3"
-            style={{
-              background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.04))",
-              color: "#7A0616",
-              letterSpacing: "0.15em",
-            }}
-          >
-            Our Services
-          </span> */}
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
+        <div className="text-center max-w-xl mx-auto">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold text-brand-text-dark leading-tight">
             Services We Provide
           </h2>
           <div className="gold-divider">
             <span className="gold-divider-dot" />
           </div>
-          {/* <p className="text-brand-text-muted text-sm lg:text-[15px] leading-relaxed mt-3">
-            From instant gold loans to long-term savings schemes — we have the
-            right product for every stage of your financial journey.
-          </p> */}
         </div>
       </div>
 
-      {/* Carousel Container */}
-      <div className="relative max-w-7xl mx-auto pb-16 lg:pb-0">
+      {/* ── Mobile View: Button-controlled pseudo-infinite scroll (hidden on desktop) ── */}
+      <div className="md:hidden relative max-w-[100vw] mx-auto pb-16">
         {/* Left/Right Fading Shadows */}
-        <div className="absolute top-0 bottom-16 lg:bottom-0 left-0 w-4 sm:w-8 bg-gradient-to-r from-brand-bg-cream to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-16 lg:bottom-0 right-0 w-4 sm:w-8 bg-gradient-to-l from-brand-bg-cream to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-16 left-0 w-4 bg-gradient-to-r from-brand-bg-cream to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-16 right-0 w-4 bg-gradient-to-l from-brand-bg-cream to-transparent z-10 pointer-events-none" />
 
-        {/* Left Arrow (Bottom on mobile, side on desktop) */}
+        {/* Left Arrow */}
         <button
           onClick={() => scroll("left")}
-          className="flex absolute bottom-0 left-1/2 -translate-x-[120%] lg:top-1/2 lg:-translate-y-1/2 lg:-translate-x-6 lg:left-0 lg:bottom-auto z-20 w-12 h-12 rounded-full bg-gradient-to-b from-[#D4AF37] to-[#B8942E] shadow-lg border border-[#FDE08B] items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95"
+          className="flex absolute bottom-0 left-1/2 -translate-x-[120%] z-20 w-12 h-12 rounded-full bg-gradient-to-b from-[#D4AF37] to-[#B8942E] shadow-lg border border-[#FDE08B] items-center justify-center cursor-pointer transition-transform active:scale-95"
           aria-label="Scroll left"
         >
           <ChevronLeft size={24} className="text-[#7A0616]" />
@@ -81,127 +141,78 @@ export default function Services() {
         {/* Horizontal Scroll Snap Wrapper */}
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto gap-4 sm:gap-6 snap-x snap-mandatory py-8 px-4 sm:px-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="flex overflow-x-auto gap-4 snap-x snap-mandatory py-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
-          {SERVICES.map((service, index) => {
-            const Icon = ICON_MAP[service.icon];
-            const iconClass = ICON_CLASSES[service.id] || ICON_CLASSES["gold-loan"];
+          {/* Spacer to perfectly center the very first element if they scroll all the way back */}
+          <div className="w-[calc(50vw-140px-8px)] shrink-0 snap-center" />
 
-            if (service.isActive) {
-              // ── ACTIVE STATE ("Gold Loan") ──
-              return (
-                <div
-                  key={service.id}
-                  className="skeuo-card group min-w-[280px] md:min-w-[340px] snap-center shrink-0 flex flex-col p-6 lg:p-7 relative animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.08}s` }}
-                >
-                  {/* Hover accent bar */}
-                  <div
-                    className="absolute top-0 left-6 right-6 h-[2px] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                    style={{
-                      background: "linear-gradient(90deg, transparent, #C5A059, transparent)",
-                    }}
-                  />
+          {SERVICES.map((service, index) => (
+            <div key={`mobile-${index}-${service.id}`} className="snap-center shrink-0">
+              <ServiceCard service={service} />
+            </div>
+          ))}
 
-                  {/* Skeuomorphic 3D Icon */}
-                  <div className={`skeuo-icon ${iconClass} mb-3 group-hover:scale-105 transition-transform !w-10 !h-10`}>
-                    {Icon && <Icon size={18} color="#FFFFFF" strokeWidth={1.8} />}
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-[15px] font-heading font-bold text-brand-text-dark mb-1 group-hover:text-brand-primary transition-colors duration-350 leading-snug">
-                    {service.title}
-                  </h3>
-
-                  {/* Highlight */}
-                  <p
-                    className="text-[10px] font-semibold text-brand-secondary-dark mb-3 uppercase leading-snug"
-                    style={{ letterSpacing: "0.15em" }}
-                  >
-                    {service.highlight}
-                  </p>
-
-                  {/* Benefits */}
-                  <ul className="space-y-2 mb-5 flex-1">
-                    {service.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[12px] text-brand-text-muted leading-snug">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[6px]"
-                          style={{
-                            background: "linear-gradient(145deg, #DBBE7A, #C5A059)",
-                            boxShadow: "0 1px 3px rgba(197,160,89,0.3)",
-                          }}
-                        />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Tactile Metallic CTA */}
-                  <Button href="#hero-form" className="w-full">
-                    Apply Now
-                    <ArrowRight size={16} />
-                  </Button>
-                </div>
-              );
-            } else {
-              // ── INACTIVE STATE ("Coming Soon") ──
-              return (
-                <div
-                  key={service.id}
-                  className="min-w-[280px] md:min-w-[340px] snap-center shrink-0 flex flex-col p-6 lg:p-7 relative bg-brand-bg-warm/80 backdrop-blur-sm border border-white/30 shadow-md rounded-2xl grayscale-[30%] opacity-90 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.08}s` }}
-                >
-                  {/* Inactive Icon (Dimmed/Grey) */}
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-stone-200 shadow-inner border border-stone-300/50">
-                    {Icon && <Icon size={18} color="#78716C" strokeWidth={1.8} />}
-                  </div>
-
-                  {/* Title (Muted) */}
-                  <h3 className="text-[15px] font-heading font-bold text-stone-600 mb-1 leading-snug">
-                    {service.title}
-                  </h3>
-
-                  {/* Highlight (Muted) */}
-                  <p
-                    className="text-[10px] font-semibold text-stone-500 mb-3 uppercase leading-snug"
-                    style={{ letterSpacing: "0.15em" }}
-                  >
-                    {service.highlight}
-                  </p>
-
-                  {/* Benefits (Muted) */}
-                  <ul className="space-y-2 mb-5 flex-1">
-                    {service.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[12px] text-stone-400 leading-snug">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[6px] bg-stone-300 shadow-inner"
-                        />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Debossed "Coming Soon" Badge */}
-                  <div className="mt-auto text-center w-full">
-                    <span className="block shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] bg-stone-200/80 text-stone-500 text-[11px] uppercase tracking-[0.2em] font-bold px-4 py-3.5 rounded-xl border border-stone-300/50">
-                      Coming Soon
-                    </span>
-                  </div>
-                </div>
-              );
-            }
-          })}
+          {/* Spacer to perfectly center the very last element */}
+          <div className="w-[calc(50vw-140px-8px)] shrink-0 snap-center" />
         </div>
 
-        {/* Right Arrow (Bottom on mobile, side on desktop) */}
+        {/* Right Arrow */}
         <button
           onClick={() => scroll("right")}
-          className="flex absolute bottom-0 right-1/2 translate-x-[120%] lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-6 lg:right-0 lg:bottom-auto z-20 w-12 h-12 rounded-full bg-gradient-to-b from-[#D4AF37] to-[#B8942E] shadow-lg border border-[#FDE08B] items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95"
+          className="flex absolute bottom-0 right-1/2 translate-x-[120%] z-20 w-12 h-12 rounded-full bg-gradient-to-b from-[#D4AF37] to-[#B8942E] shadow-lg border border-[#FDE08B] items-center justify-center cursor-pointer transition-transform active:scale-95"
           aria-label="Scroll right"
         >
           <ChevronRight size={24} className="text-[#7A0616]" />
         </button>
+      </div>
+
+      {/* ── Desktop View: Auto-scrolling Marquee (hidden on mobile) ── */}
+      <div className="hidden md:block relative w-full overflow-hidden pb-4">
+        <style>{`
+          .services-marquee-track {
+            display: flex;
+            width: max-content;
+            animation: servicesMarqueeScroll 45s linear infinite;
+          }
+          .services-marquee-track:hover {
+            animation-play-state: paused;
+          }
+          @keyframes servicesMarqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100% / 3)); }
+          }
+          .services-marquee-content {
+            display: flex;
+            gap: 2rem;
+            padding: 0 1rem;
+            flex-shrink: 0;
+          }
+          .services-mask-edges {
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+          }
+        `}</style>
+
+        <div className="services-mask-edges">
+          <div className="services-marquee-track py-6">
+            <div className="services-marquee-content" aria-hidden="false">
+              {SERVICES.map((service, index) => (
+                <ServiceCard key={`set1-${service.id}`} service={service} />
+              ))}
+            </div>
+            <div className="services-marquee-content" aria-hidden="true">
+              {SERVICES.map((service, index) => (
+                <ServiceCard key={`set2-${service.id}`} service={service} />
+              ))}
+            </div>
+            {/* Added a 3rd set for ultra-wide displays to guarantee no gap */}
+            <div className="services-marquee-content" aria-hidden="true">
+              {SERVICES.map((service, index) => (
+                <ServiceCard key={`set3-${service.id}`} service={service} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

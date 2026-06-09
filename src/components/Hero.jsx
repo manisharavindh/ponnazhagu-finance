@@ -15,7 +15,7 @@ export default function Hero({ openLegalModal }) {
         }}
       />
 
-      <div className="section-container relative z-10 py-10 sm:py-14 lg:py-20">
+      <div className="section-container relative z-10 py-10 sm:py-14 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* ── Left Content (7 cols) ── */}
           <div className="lg:col-span-7 animate-fade-in-up lg:pt-2">
@@ -100,12 +100,6 @@ export default function Hero({ openLegalModal }) {
         </div>
       </div>
 
-      {/* Wave separator */}
-      {/* <div className="w-full overflow-hidden leading-none -mb-px relative z-10">
-        <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
-          <path d="M0 24C240 0 480 48 720 24C960 0 1200 48 1440 24V48H0V24Z" fill="#F5F0E8" />
-        </svg>
-      </div> */}
     </section>
   );
 }

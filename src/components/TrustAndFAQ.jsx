@@ -63,10 +63,10 @@ export default function TrustAndFAQ() {
   const [openFAQ, setOpenFAQ] = useState(0);
 
   return (
-    <section id="about" className="bg-brand-bg-cream py-14 sm:py-16 lg:py-24">
+    <section id="about" className="bg-brand-bg-cream py-8 sm:py-10 lg:py-12">
       <div className="section-container">
         {/* ── Trust Badges Section ── */}
-        <div className="text-center max-w-xl mx-auto mb-10 lg:mb-12">
+        <div className="text-center max-w-xl mx-auto mb-4">
           <span
             className="inline-block px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase mb-3"
             style={{
@@ -86,7 +86,7 @@ export default function TrustAndFAQ() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-14 lg:mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-10 lg:mb-12">
           {TRUST_BADGES.map((badge, index) => {
             const Icon = BADGE_ICONS[badge.icon];
             return (

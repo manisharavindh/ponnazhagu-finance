@@ -2,8 +2,8 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import Header from "./components/Header";
 import LoadingScreen from "./components/ui/LoadingScreen";
 
-// Lazy load components below the fold for faster initial load
 const Hero = lazy(() => import("./components/Hero"));
+const LoanProcess = lazy(() => import("./components/LoanProcess"));
 const Services = lazy(() => import("./components/Services"));
 const Calculator = lazy(() => import("./components/Calculator"));
 const TrustAndFAQ = lazy(() => import("./components/TrustAndFAQ"));
@@ -31,23 +31,24 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       {showLoader && <LoadingScreen />}
-      
+
       <Header />
       <main>
         <Suspense fallback={!showLoader ? <LoadingScreen /> : null}>
           <Hero openLegalModal={openLegalModal} />
+          <LoanProcess />
           <Services />
           <Calculator />
           <TrustAndFAQ />
         </Suspense>
       </main>
-      
+
       <Suspense fallback={null}>
         <Footer openLegalModal={openLegalModal} />
-        <LegalModal 
-          isOpen={legalModalOpen} 
-          onClose={() => setLegalModalOpen(false)} 
-          type={legalModalType} 
+        <LegalModal
+          isOpen={legalModalOpen}
+          onClose={() => setLegalModalOpen(false)}
+          type={legalModalType}
         />
       </Suspense>
     </div>

@@ -87,32 +87,16 @@ export default function Calculator() {
   );
 
   return (
-    <section id="calculator" className="bg-brand-bg-warm py-14 sm:py-16 lg:py-24">
+    <section id="calculator" className="bg-brand-bg-warm py-8 sm:py-10 lg:py-12">
       <div className="section-container">
         {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-10 lg:mb-14">
-          {/* <span
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase mb-3"
-            style={{
-              background: "linear-gradient(135deg, rgba(122,6,22,0.1), rgba(122,6,22,0.04))",
-              color: "#7A0616",
-              letterSpacing: "0.15em",
-            }}
-          >
-            <CalcIcon size={13} />
-            Financial Calculators
-          </span> */}
+        <div className="text-center max-w-xl mx-auto mb-4">
           <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
             Plan Your Finances
-            {/* <span className="text-brand-text-dark"></span> */}
           </h2>
           <div className="gold-divider">
             <span className="gold-divider-dot" />
           </div>
-          {/* <p className="text-brand-text-muted text-sm lg:text-[15px] leading-relaxed mt-3">
-            Use our interactive calculators to estimate your EMI and plan your
-            repayment schedule before you apply.
-          </p> */}
         </div>
 
         {/* ── Outer Wrapper: Command Center ── */}

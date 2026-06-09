@@ -13,30 +13,30 @@ export default function LoadingScreen() {
           animation: fillUp 1.5s ease-in-out forwards;
         }
       `}</style>
-      
+
       {/* Texture Layer - exact match to footer */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="w-full h-full mandala-texture"></div>
       </div>
-      
+
       <div className="relative flex flex-col items-center justify-center z-10">
-        
+
         <div className="relative w-32 h-32 sm:w-44 sm:h-44 flex items-center justify-center">
           {/* Base Silhouette (Empty State) */}
-          <img 
-            src={krishnaCalf} 
-            alt="Krishna and Calf Silhouette Base" 
+          <img
+            src={krishnaCalf}
+            alt="loading"
             className="absolute inset-0 w-full h-full object-contain opacity-20"
           />
-          
+
           {/* Filled Silhouette (Filling Animation) */}
-          <img 
-            src={krishnaCalf} 
-            alt="Krishna and Calf Silhouette Filling" 
+          <img
+            src={krishnaCalf}
+            alt="loading"
             className="absolute inset-0 w-full h-full object-contain animate-fill-up"
           />
         </div>
-        
+
       </div>
     </div>
   );
