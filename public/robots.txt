@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ponnazhagufinance.netlify.app/sitemap.xml
