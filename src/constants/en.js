@@ -1,3 +1,101 @@
+export const UI_STRINGS = {
+  // Common
+  checkEligibilityTitle: "Check Your Eligibility",
+  checkEligibility: "CHECK ELIGIBILITY",
+  applyNow: "Apply Now",
+  applyForLoan: "Apply for this Loan",
+
+  // Header / Nav
+  language: "English / தமிழ்",
+
+  // Hero
+  branchTimings: "Branch timings",
+
+  // Calculator
+  calculatorTitle: "Plan Your Finances",
+  loanAmount: "Loan Amount",
+  tenure: "Tenure",
+  interestRate: "Interest Rate",
+  months: "months",
+  month: "month",
+  mos: "mos",
+  mo: "mo",
+  monthlyEmi: "Monthly EMI",
+  totalPrincipal: "Total Principal",
+  totalInterest: "Total Interest",
+  totalRepayment: "Total Repayment Amount",
+  estimatedPledge: "Estimated Pledge Required",
+  gold: "Gold",
+  silver: "Silver",
+  or: "or",
+  calculatorDisclaimer: "* Calculations are indicative and based on simple interest. Actual EMI, interest, and terms may vary based on your credit profile, documentation, and prevailing rates.",
+
+  // Form
+  fullName: "Full Name *",
+  mobileNumber: "Mobile Number *",
+  selectLoanType: "Select Loan Type",
+  loanAmountNeeded: "Loan Amount Needed *",
+  submitInquiry: "Submit Inquiry",
+  validating: "Validating...",
+  submitted: "Submitted!",
+
+  // Sections
+  howItWorks: "How It Works",
+  simpleSteps: "4 Simple Steps",
+  step: "Step",
+  ourOfferings: "Our Offerings",
+  whatWeProvide: "What We Provide",
+  whyChooseUs: "Why Choose Us?",
+  builtOnTrust: "Built on Trust",
+  faq: "Frequently Asked Questions",
+  clearAnswers: "Clear Answers",
+
+  // Footer
+  contactUs: "CONTACT US",
+  ourServices: "OUR SERVICES",
+  more: "MORE",
+  visitOurBranch: "VISIT OUR BRANCH",
+  viewOnMap: "View on Google Maps",
+  visitBranchBtn: "VISIT BRANCH",
+  footerDisclaimer: "Disclaimer: The statistical data, rates, and values mentioned on this website are for illustrative purposes only. Actual rates, values, and terms may vary based on market conditions, company policies, and individual eligibility criteria.",
+  allRightsReserved: "All rights reserved.",
+
+  // Mobile FABs
+  callNow: "Call Now",
+  whatsapp: "WhatsApp",
+  call: "Call",
+
+  // Hero Stats
+  govApproved: "Government Approved",
+  yearsOfTrust: "Years of Trust",
+  happyCustomers: "Happy Customers",
+  loansDisbursed: "Loans Disbursed",
+
+  // Services
+  comingSoon: "Coming Soon",
+  servicesWeProvide: "Services We Provide",
+
+  // Loan Process
+  apply: "Apply",
+  valuation: "Valuation",
+  approval: "Approval",
+  disbursal: "Disbursal",
+
+  // Inquiry form specific
+  inquiryReceived: "Inquiry Received!",
+  thankYou: "Thank you,",
+  teamWillReachYou: "Our team will reach you on",
+  within30Min: "within 30 minutes during business hours.",
+  getCallback: "Get a callback in 30 minutes",
+  amountNeededPlaceholder: "Amount Needed *",
+  bySubmittingText1: "By submitting, you agree to our",
+  bySubmittingText2: "&",
+  bySubmittingText3: " We'll contact you at the number provided.",
+  terms: "Terms",
+  privacyPolicy: "Privacy Policy",
+  termsAndConditions: "Terms & Conditions"
+};
+
 export const COMPANY = {
   name: "Ponnazhagu Finance",
   tagline: "Your Trusted Financial Partner for Growth & Prosperity",
@@ -27,9 +125,11 @@ export const SERVICE_DROPDOWN = [
 ];
 
 export const HERO = {
-  headline: "Your Trusted Financial Partner for Growth & Prosperity",
-  subheadline:
-    "Low Interest Rates • Minimal Documentation • Quick Approval",
+  headline: {
+    start: "Your Trusted Financial Partner for ",
+    highlight: "Growth",
+  },
+  subheadline: "Low Interest Rates • Minimal Documentation • Quick Approval",
   traits: [
     "Interest rates starting from 0.75%",
     "Loan approval in just 30 minutes",
@@ -124,33 +224,27 @@ export const TRUST_BADGES = [
 export const FAQ_DATA = [
   {
     question: "What documents are needed for a Gold Loan?",
-    answer:
-      "You need a valid government-issued photo ID (Aadhaar Card, Voter ID, or Passport) and the gold ornaments you wish to pledge. The entire process takes under 30 minutes.",
+    answer: "You need a valid government-issued photo ID (Aadhaar Card, Voter ID, or Passport) and the gold ornaments you wish to pledge. The entire process takes under 30 minutes.",
   },
   {
     question: "How is the gold valued for the loan amount?",
-    answer:
-      "We evaluate your gold based on purity (carats) and current market rates. We use digital karat meters for transparent assessment. You receive the industry-best value per gram with no hidden deductions.",
+    answer: "We evaluate your gold based on purity (carats) and current market rates. We use digital karat meters for transparent assessment. You receive the industry-best value per gram with no hidden deductions.",
   },
   {
     question: "Are there any processing fees or hidden charges?",
-    answer:
-      "We charge a nominal processing fee of 0.5% to 1% of the loan amount, disclosed upfront before loan sanction. There are absolutely no hidden charges, pre-closure penalties, or surprise deductions.",
+    answer: "We charge a nominal processing fee of 0.5% to 1% of the loan amount, disclosed upfront before loan sanction. There are absolutely no hidden charges, pre-closure penalties, or surprise deductions.",
   },
   {
     question: "Can I prepay or foreclose my loan early?",
-    answer:
-      "Yes, you can prepay or foreclose your loan at any time without any penalty. We encourage early repayment and there are zero foreclosure charges on all our loan products.",
+    answer: "Yes, you can prepay or foreclose your loan at any time without any penalty. We encourage early repayment and there are zero foreclosure charges on all our loan products.",
   },
   {
     question: "Is my gold safe during the loan period?",
-    answer:
-      "Absolutely. Your gold is stored in high-grade, fireproof vaults with 24/7 CCTV surveillance. You receive a detailed sealed receipt at the time of pledging.",
+    answer: "Absolutely. Your gold is stored in high-grade, fireproof vaults with 24/7 CCTV surveillance. You receive a detailed sealed receipt at the time of pledging.",
   },
   {
     question: "What happens if the loan or interest is not paid by the due date?",
-    answer:
-      "If the principal amount or interest is not paid by the given due date, despite repeated reminders, the pledged gold or silver may be auctioned to recover the outstanding dues as per our terms and conditions.",
+    answer: "If the principal amount or interest is not paid by the given due date, despite repeated reminders, the pledged gold or silver may be auctioned to recover the outstanding dues as per our terms and conditions.",
   },
 ];
 
@@ -159,10 +253,6 @@ export const LOAN_TYPES = [
   { value: "gold-loan", label: "Gold Loan" },
   { value: "silver-loan", label: "Silver Loan" },
   { value: "more", label: "More" },
-  // { value: "business-loan", label: "Business / Micro Finance" },
-  // { value: "personal-loan", label: "Personal / Salary Loan" },
-  // { value: "vehicle-loan", label: "Vehicle Loan" },
-  // { value: "savings-scheme", label: "Savings / Fixed Scheme" },
 ];
 
 export const CALCULATOR_CONFIG = {

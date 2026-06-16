@@ -1,10 +1,11 @@
 import { FileText, Search, CreditCard, CheckCircle, ChevronRight } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
-const PROCESS_STEPS = [
-  { icon: FileText, title: "Apply" },
-  { icon: Search, title: "Valuation" },
-  { icon: CheckCircle, title: "Approval" },
-  { icon: CreditCard, title: "Disbursal" },
+const getProcessSteps = (t) => [
+  { icon: FileText, title: t.UI_STRINGS.apply },
+  { icon: Search, title: t.UI_STRINGS.valuation },
+  { icon: CheckCircle, title: t.UI_STRINGS.approval },
+  { icon: CreditCard, title: t.UI_STRINGS.disbursal },
 ];
 
 /* Single step pill */
@@ -29,13 +30,13 @@ function StepArrow() {
 }
 
 /* Build the strip content (steps + arrows) */
-function StepStrip() {
+function StepStrip({ steps }) {
   return (
     <>
-      {PROCESS_STEPS.map((step, idx) => (
+      {steps.map((step, idx) => (
         <div key={idx} className="loan-step-group">
           <StepPill icon={step.icon} title={step.title} />
-          {idx !== PROCESS_STEPS.length - 1 && <StepArrow />}
+          {idx !== steps.length - 1 && <StepArrow />}
         </div>
       ))}
     </>
@@ -43,12 +44,15 @@ function StepStrip() {
 }
 
 export default function LoanProcess() {
+  const { t } = useLanguage();
+  const steps = getProcessSteps(t);
+
   return (
     <section className="loan-process-root" id="loan-process">
       {/* ── Desktop: Static single-line centered ── */}
       <div className="loan-process-desktop">
         <div className="loan-process-steps">
-          <StepStrip />
+          <StepStrip steps={steps} />
         </div>
       </div>
 
@@ -56,15 +60,15 @@ export default function LoanProcess() {
       <div className="loan-process-mobile">
         <div className="loan-marquee-track">
           <div className="loan-marquee-content" aria-hidden="false">
-            <StepStrip />
+            <StepStrip steps={steps} />
             <StepArrow />
-            <StepStrip />
+            <StepStrip steps={steps} />
             <StepArrow />
           </div>
           <div className="loan-marquee-content" aria-hidden="true">
-            <StepStrip />
+            <StepStrip steps={steps} />
             <StepArrow />
-            <StepStrip />
+            <StepStrip steps={steps} />
             <StepArrow />
           </div>
         </div>

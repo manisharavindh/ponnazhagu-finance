@@ -1,4 +1,4 @@
-import React from 'react';
+
 import krishnaCalf from '../../assets/krishna-transparent.webp';
 
 export default function LoadingScreen() {

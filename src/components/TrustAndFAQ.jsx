@@ -6,7 +6,7 @@ import {
   Award,
   ChevronDown,
 } from "lucide-react";
-import { TRUST_BADGES, FAQ_DATA } from "../constants/data";
+import { useLanguage } from "../context/LanguageContext";
 
 const BADGE_ICONS = { ShieldCheck, Eye, Clock, Award };
 
@@ -60,6 +60,7 @@ function FAQItem({ item, isOpen, onToggle }) {
 }
 
 export default function TrustAndFAQ() {
+  const { t } = useLanguage();
   const [openFAQ, setOpenFAQ] = useState(0);
 
   return (
@@ -75,11 +76,10 @@ export default function TrustAndFAQ() {
               letterSpacing: "0.15em",
             }}
           >
-            Why Choose Us
+            {t.UI_STRINGS.whyChooseUs}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
-            Trust, Security &{" "}
-            <span className="text-brand-text-dark">Compliance</span>
+            {t.UI_STRINGS.builtOnTrust}
           </h2>
           <div className="gold-divider">
             <span className="gold-divider-dot" />
@@ -87,7 +87,7 @@ export default function TrustAndFAQ() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-10 lg:mb-12">
-          {TRUST_BADGES.map((badge, index) => {
+          {t.TRUST_BADGES.map((badge, index) => {
             const Icon = BADGE_ICONS[badge.icon];
             return (
               <div
@@ -126,16 +126,15 @@ export default function TrustAndFAQ() {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-[1.75rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-2">
-              Frequently Asked Questions
+              {t.UI_STRINGS.faq}
             </h2>
             <p className="text-brand-text-muted text-sm leading-relaxed">
-              Quick answers to common queries about our loan products and
-              processes
+              {t.UI_STRINGS.clearAnswers}
             </p>
           </div>
 
           <div className="space-y-3">
-            {FAQ_DATA.map((item, index) => (
+            {t.FAQ_DATA.map((item, index) => (
               <FAQItem
                 key={index}
                 item={item}

@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
-import { Calculator as CalcIcon } from "lucide-react";
-import { CALCULATOR_CONFIG } from "../constants/data";
+
+import { useLanguage } from "../context/LanguageContext";
 import Button from "./ui/Button";
 
 function formatINR(num) {
@@ -77,7 +77,8 @@ const DonutChart = ({ principal, interest }) => {
 };
 
 export default function Calculator() {
-  const config = CALCULATOR_CONFIG["emiCalculator"];
+  const { t } = useLanguage();
+  const config = t.CALCULATOR_CONFIG["emiCalculator"];
 
   // We lift state up here so the entire 2-column layout can read it
   const { amount, setAmount, tenure, setTenure, interestRate, setInterestRate, result } = useCalculator(
@@ -92,7 +93,7 @@ export default function Calculator() {
         {/* Section Header */}
         <div className="text-center max-w-xl mx-auto mb-4">
           <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-1">
-            Plan Your Finances
+            {t.UI_STRINGS.calculatorTitle}
           </h2>
           <div className="gold-divider">
             <span className="gold-divider-dot" />
@@ -111,14 +112,15 @@ export default function Calculator() {
                 {/* Amount Slider */}
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
-                      Loan Amount
+                    <label htmlFor="calc-amount" className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
+                      {t.UI_STRINGS.loanAmount}
                     </label>
                     <span className="text-2xl font-heading font-extrabold text-brand-primary tabular-nums drop-shadow-sm">
                       {formatINR(amount)}
                     </span>
                   </div>
                   <input
+                    id="calc-amount"
                     type="range"
                     min={config.minAmount}
                     max={config.maxAmount}
@@ -133,7 +135,7 @@ export default function Calculator() {
                                [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-gradient-to-b [&::-moz-range-thumb]:from-[#D4AF37] 
                                [&::-moz-range-thumb]:to-[#B8942E] [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-[#FDE08B] 
                                [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none outline-none"
-                    aria-label="Loan Amount"
+                    aria-valuetext={formatINR(amount)}
                   />
                   <div className="flex justify-between text-[11px] text-brand-text-muted mt-3 font-bold tabular-nums uppercase tracking-wide">
                     <span>{formatINR(config.minAmount)}</span>
@@ -144,14 +146,15 @@ export default function Calculator() {
                 {/* Tenure Slider */}
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
-                      Tenure
+                    <label htmlFor="calc-tenure" className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
+                      {t.UI_STRINGS.tenure}
                     </label>
                     <span className="text-2xl font-heading font-extrabold text-brand-primary tabular-nums drop-shadow-sm">
-                      {tenure} {tenure === 1 ? "month" : "months"}
+                      {tenure} {tenure === 1 ? t.UI_STRINGS.month : t.UI_STRINGS.months}
                     </span>
                   </div>
                   <input
+                    id="calc-tenure"
                     type="range"
                     min={config.minTenure}
                     max={config.maxTenure}
@@ -166,27 +169,28 @@ export default function Calculator() {
                                [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-gradient-to-b [&::-moz-range-thumb]:from-[#D4AF37] 
                                [&::-moz-range-thumb]:to-[#B8942E] [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-[#FDE08B] 
                                [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none outline-none"
-                    aria-label="Loan Tenure"
+                    aria-valuetext={`${tenure} ${tenure === 1 ? t.UI_STRINGS.month : t.UI_STRINGS.months}`}
                   />
                   <div className="flex justify-between text-[11px] text-brand-text-muted mt-3 font-bold tabular-nums uppercase tracking-wide">
                     <span>
-                      {config.minTenure} {config.minTenure === 1 ? "mo" : "mos"}
+                      {config.minTenure} {config.minTenure === 1 ? t.UI_STRINGS.mo : t.UI_STRINGS.mos}
                     </span>
-                    <span>{config.maxTenure} mos</span>
+                    <span>{config.maxTenure} {t.UI_STRINGS.mos}</span>
                   </div>
                 </div>
 
                 {/* Interest Rate Slider */}
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <label className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
-                      Interest Rate
+                    <label htmlFor="calc-interest" className="text-[13px] font-bold text-brand-text-dark uppercase tracking-wide">
+                      {t.UI_STRINGS.interestRate}
                     </label>
                     <span className="text-2xl font-heading font-extrabold text-brand-primary tabular-nums drop-shadow-sm">
                       {interestRate.toFixed(2)}%
                     </span>
                   </div>
                   <input
+                    id="calc-interest"
                     type="range"
                     min={0.75}
                     max={2.00}
@@ -201,7 +205,7 @@ export default function Calculator() {
                                [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-gradient-to-b [&::-moz-range-thumb]:from-[#D4AF37] 
                                [&::-moz-range-thumb]:to-[#B8942E] [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-[#FDE08B] 
                                [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none outline-none"
-                    aria-label="Interest Rate"
+                    aria-valuetext={`${interestRate.toFixed(2)} percent`}
                   />
                   <div className="flex justify-between text-[11px] text-brand-text-muted mt-3 font-bold tabular-nums uppercase tracking-wide">
                     <span>0.75%</span>
@@ -220,7 +224,7 @@ export default function Calculator() {
 
                 <div className="text-center w-full px-2">
                   <p className="text-white/70 text-[12px] font-bold uppercase tracking-widest mb-1.5">
-                    Monthly EMI
+                    {t.UI_STRINGS.monthlyEmi}
                   </p>
                   <p className="text-3xl lg:text-4xl xl:text-[2.5rem] font-heading font-black text-white tabular-nums drop-shadow-md tracking-tight break-all sm:break-normal">
                     {formatINR(result.emi)}
@@ -228,7 +232,7 @@ export default function Calculator() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              {/* <div className="grid grid-cols-2 gap-4 mb-4">
                 <div className="bg-black/20 rounded-xl p-4 text-center border border-white/5 shadow-inner">
                   <p className="text-white/50 text-[10px] font-bold uppercase tracking-wider mb-1">
                     Total Principal
@@ -245,20 +249,38 @@ export default function Calculator() {
                     {formatINR(result.totalInterest)}
                   </p>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="bg-black/20 rounded-xl p-4 text-center border border-white/5 shadow-inner mb-8">
+              <div className="bg-black/20 rounded-xl p-4 text-center border border-white/5 shadow-inner mb-4">
                 <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">
-                  Total Repayment Amount
+                  {t.UI_STRINGS.totalRepayment}
                 </p>
                 <p className="text-xl font-heading font-black text-[#D4AF37] tabular-nums">
                   {formatINR(result.totalRepayment)}
                 </p>
               </div>
 
+              <div className="bg-black/20 rounded-xl p-4 text-center border border-white/5 shadow-inner mb-4">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
+                <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-2 relative z-10">
+                  {t.UI_STRINGS.estimatedPledge}
+                </p>
+                <div className="flex justify-center gap-6 items-center relative z-10">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-xl font-heading font-black text-[#D4AF37] tabular-nums">{Math.ceil(amount / 5000)}g</span>
+                    <span className="text-[11px] text-white/60 uppercase font-bold tracking-wider">{t.UI_STRINGS.gold}</span>
+                  </div>
+                  <span className="text-white/20 text-xs font-light">/</span>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-xl font-heading font-black text-[#E2E8F0] tabular-nums">{Math.ceil(amount / 75)}g</span>
+                    <span className="text-[11px] text-white/60 uppercase font-bold tracking-wider">{t.UI_STRINGS.silver}</span>
+                  </div>
+                </div>
+              </div>
+
               <div className="text-center">
                 <Button href="#hero-form" className="w-full">
-                  Apply for this Loan
+                  {t.UI_STRINGS.applyForLoan}
                 </Button>
               </div>
             </div>
@@ -268,9 +290,7 @@ export default function Calculator() {
 
         {/* Disclaimer */}
         <p className="text-center text-[12px] text-brand-text-muted mt-6 leading-relaxed max-w-2xl mx-auto">
-          * Calculations are indicative and based on simple interest. Actual
-          EMI, interest, and terms may vary based on your credit profile,
-          documentation, and prevailing rates.
+          {t.UI_STRINGS.calculatorDisclaimer}
         </p>
 
       </div>

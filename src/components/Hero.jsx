@@ -1,10 +1,12 @@
 import { CheckCircle, TrendingUp, ShieldCheck, Zap } from "lucide-react";
-import { HERO } from "../constants/data";
+import { useLanguage } from "../context/LanguageContext";
 import InquiryForm from "./InquiryForm";
 
 const TRAIT_ICONS = [TrendingUp, Zap, ShieldCheck, CheckCircle];
 
 export default function Hero({ openLegalModal }) {
+  const { t } = useLanguage();
+
   return (
     <section id="home" className="relative overflow-hidden bg-slate-50 heritage-pattern">
       {/* Gold accent line */}
@@ -27,26 +29,33 @@ export default function Hero({ openLegalModal }) {
               }}>
               <span className="w-2 h-2 rounded-full bg-[#14b489] animate-pulse" />
               <span className="text-[11px] font-semibold text-brand-primary uppercase tracking-[0.12em]">
-                Government Approved
+                {t.UI_STRINGS.govApproved}
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] xl:text-[3.125rem] font-heading font-extrabold text-brand-text-dark leading-tight mb-4 lg:mb-5">
-              Your Trusted Financial{" "}
-              <br className="hidden sm:block" />
-              Partner for{" "}
-              <span className="text-brand-primary">Growth</span>
+              {typeof t.HERO.headline === 'object' ? (
+                <>
+                  {t.HERO.headline.start}
+                  <span className="text-brand-primary inline-block relative whitespace-nowrap">
+                    {t.HERO.headline.highlight}
+                  </span>
+                  {t.HERO.headline.end}
+                </>
+              ) : (
+                t.HERO.headline
+              )}
             </h1>
 
             {/* Subheadline */}
             <p className="text-sm sm:text-base lg:text-md text-brand-text-muted font-medium mb-6 lg:mb-8 max-w-lg leading-relaxed">
-              {HERO.subheadline}
+              {t.HERO.subheadline}
             </p>
 
             {/* Trait Chips — Skeuomorphic cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mb-7 lg:mb-8">
-              {HERO.traits.map((trait, i) => {
+              {t.HERO.traits.map((trait, i) => {
                 const Icon = TRAIT_ICONS[i];
                 return (
                   <div
@@ -77,9 +86,9 @@ export default function Hero({ openLegalModal }) {
             {/* Stats row */}
             <div className="flex items-center divide-x divide-brand-border/60 pt-6 mt-2 border-t border-brand-border/60">
               {[
-                { value: "5+", label: "Years of Trust" },
-                { value: "2K+", label: "Happy Customers" },
-                { value: "₹1.5Cr+", label: "Loans Disbursed" },
+                { value: "5+", label: t.UI_STRINGS.yearsOfTrust },
+                { value: "2K+", label: t.UI_STRINGS.happyCustomers },
+                { value: "₹1.5Cr+", label: t.UI_STRINGS.loansDisbursed },
               ].map((stat, idx) => (
                 <div key={stat.label} className={`px-4 sm:px-6 ${idx === 0 ? 'pl-0' : ''}`}>
                   <div className="text-2xl lg:text-3xl font-heading font-extrabold text-brand-primary leading-none mb-1.5">

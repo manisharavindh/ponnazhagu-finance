@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import {
   Phone,
   Mail,
   MapPin,
 } from "lucide-react";
-import { COMPANY, FOOTER_LINKS } from "../constants/data";
+import { useLanguage } from "../context/LanguageContext";
 import logo from "../assets/logo.png";
 
 /* ── Inline Social Media SVG icons ── */
@@ -72,6 +73,7 @@ function OrnateCorner({ className = "" }) {
 }
 
 export default function Footer({ openLegalModal }) {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -96,13 +98,13 @@ export default function Footer({ openLegalModal }) {
               <div className="footer-logo-row">
                 <img
                   src={logo}
-                  alt={`${COMPANY.name} Logo`}
+                  alt={`${t.COMPANY.name} Logo`}
                   className="footer-logo-img"
                 />
-                <span className="footer-brand-name">Ponnazhagu Finance</span>
+                <span className="footer-brand-name">{t.COMPANY.name}</span>
               </div>
               <p className="footer-tagline">
-                Your Trusted Financial Partner for Growth. Low Interest Rates, Minimal Documentation, Quick Approval
+                {t.COMPANY.tagline}
               </p>
               {/* <div className="footer-social-row">
                 <a href="#" className="footer-social-icon" aria-label="Facebook">
@@ -125,50 +127,52 @@ export default function Footer({ openLegalModal }) {
 
             {/* ── Column 2: Contact Us ── */}
             <div className="footer-col">
-              <h4 className="footer-heading">CONTACT US</h4>
+              <h4 className="footer-heading">{t.UI_STRINGS.contactUs}</h4>
               <div className="footer-contact-list">
                 <div className="footer-contact-item">
                   <div className="footer-contact-icon-wrap">
                     <Phone size={12} className="footer-contact-icon" />
                   </div>
                   <div className="footer-contact-text">
-                    <a href={`tel:${COMPANY.phone}`} className="footer-link">
-                      {COMPANY.phone}
+                    <a href={`tel:${t.COMPANY.phone}`} className="footer-link">
+                      {t.COMPANY.phone}
                     </a>
                   </div>
                 </div>
-                <div className="footer-contact-item">
-                  <div className="footer-contact-icon-wrap">
-                    <Phone size={10} className="footer-contact-icon" />
+                {t.COMPANY.phone2 && (
+                  <div className="footer-contact-item">
+                    <div className="footer-contact-icon-wrap">
+                      <Phone size={10} className="footer-contact-icon" />
+                    </div>
+                    <div className="footer-contact-text">
+                      <a href={`tel:${t.COMPANY.phone2}`} className="footer-link">
+                        {t.COMPANY.phone2}
+                      </a>
+                    </div>
                   </div>
-                  <div className="footer-contact-text">
-                    <a href={`tel:${COMPANY.phone2}`} className="footer-link">
-                      {COMPANY.phone2}
-                    </a>
-                  </div>
-                </div>
+                )}
                 <div className="footer-contact-item">
                   <div className="footer-contact-icon-wrap">
                     <Mail size={12} className="footer-contact-icon" />
                   </div>
-                  <a href={`mailto:${COMPANY.email}`} className="footer-link">
-                    {COMPANY.email}
+                  <a href={`mailto:${t.COMPANY.email}`} className="footer-link">
+                    {t.COMPANY.email}
                   </a>
                 </div>
                 <div className="footer-contact-item">
                   <div className="footer-contact-icon-wrap">
                     <MapPin size={12} className="footer-contact-icon" />
                   </div>
-                  <span className="footer-address">{COMPANY.address}</span>
+                  <span className="footer-address">{t.COMPANY.address}</span>
                 </div>
               </div>
             </div>
 
             {/* ── Column 3: Our Services ── */}
             <div className="footer-col">
-              <h4 className="footer-heading">OUR SERVICES</h4>
+              <h4 className="footer-heading">{t.UI_STRINGS.ourServices}</h4>
               <ul className="footer-link-list">
-                {FOOTER_LINKS.services.map((link) => (
+                {t.FOOTER_LINKS.services.map((link) => (
                   <li key={link.label}>
                     <a href={link.href} className="footer-link">{link.label}</a>
                   </li>
@@ -178,16 +182,16 @@ export default function Footer({ openLegalModal }) {
 
             {/* ── Column 4: Legal ── */}
             <div className="footer-col">
-              <h4 className="footer-heading">LEGAL</h4>
+              <h4 className="footer-heading">{t.UI_STRINGS.more}</h4>
               <ul className="footer-link-list">
-                {FOOTER_LINKS.legal.map((link) => (
+                {t.FOOTER_LINKS.legal.map((link) => (
                   <li key={link.label}>
-                    {link.label === "Privacy Policy" ||
-                      link.label === "Terms & Conditions" ? (
+                    {link.label === t.UI_STRINGS.privacyPolicy ||
+                      link.label === t.UI_STRINGS.termsAndConditions ? (
                       <button
                         onClick={(e) => {
                           e.preventDefault();
-                          if (link.label === "Privacy Policy")
+                          if (link.label === t.UI_STRINGS.privacyPolicy)
                             openLegalModal?.("privacy");
                           else openLegalModal?.("terms");
                         }}
@@ -205,25 +209,25 @@ export default function Footer({ openLegalModal }) {
 
             {/* ── Column 5: Visit Our Branch ── */}
             <div className="footer-col footer-col-branch">
-              <h4 className="footer-heading">VISIT OUR BRANCH</h4>
+              <h4 className="footer-heading">{t.UI_STRINGS.visitOurBranch}</h4>
               <div className="footer-branch-card">
                 <MapPin size={24} className="footer-branch-pin" />
                 <p className="footer-branch-location">Sivagangai, Tamil Nadu</p>
                 <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`}
+                  href={`${t.COMPANY.map}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-branch-maps-link"
                 >
-                  View on Google Maps
+                  {t.UI_STRINGS.viewOnMap}
                 </a>
                 <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`}
+                  href={`${t.COMPANY.map}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-visit-btn"
                 >
-                  VISIT BRANCH
+                  {t.UI_STRINGS.visitBranchBtn}
                 </a>
               </div>
             </div>
@@ -238,7 +242,10 @@ export default function Footer({ openLegalModal }) {
           <span className="footer-flourish-diamond">◆</span>
           <span className="footer-flourish-line" />
         </div>
-        <p>© {currentYear} Ponnazhagu Finance. All rights reserved.</p>
+        <p>© {currentYear} {t.COMPANY.name}. {t.UI_STRINGS.allRightsReserved}</p>
+        <p className="mt-3 text-xs opacity-60 max-w-2xl mx-auto text-center px-4 leading-relaxed">
+          {t.UI_STRINGS.footerDisclaimer}
+        </p>
       </div>
 
       {/* Spacer for mobile FAB */}

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { X, Loader2 } from "lucide-react";
-import { COMPANY } from "../../constants/data";
+import { useLanguage } from "../../context/LanguageContext";
 import logo from "../../assets/logo.png";
 
 export default function LegalModal({ isOpen, onClose, type }) {
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      setIsLoading(true);
       const timer = setTimeout(() => setIsLoading(false), 800);
       return () => {
         document.body.style.overflow = "unset";
@@ -17,6 +17,8 @@ export default function LegalModal({ isOpen, onClose, type }) {
       };
     } else {
       document.body.style.overflow = "unset";
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsLoading(true); // reset for next open
     }
 
     return () => {
@@ -27,7 +29,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
   if (!isOpen) return null;
 
   const isTerms = type === "terms";
-  const title = isTerms ? "Terms & Conditions" : "Privacy Policy";
+  const title = isTerms ? t.UI_STRINGS.termsAndConditions : t.UI_STRINGS.privacyPolicy;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -76,7 +78,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
             {/* Header */}
             <div className="pt-12 pb-6 px-8 sm:px-12 text-center border-b border-[#DBBE7A]/20 flex-shrink-0 relative z-10">
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 flex-shrink-0 overflow-hidden">
-                <img src={logo} alt={`${COMPANY.name} Logo`} className="w-full h-full object-contain" />
+                <img src={logo} alt={`${t.COMPANY.name} Logo`} className="w-full h-full object-contain" />
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-brand-text-dark tracking-wide uppercase">
@@ -97,7 +99,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
               ) : isTerms ? (
                 <div className="space-y-7 max-w-3xl mx-auto">
                   <p className="text-[15px] sm:text-[16px]">
-                    Welcome to <strong className="text-brand-primary font-semibold">{COMPANY.name}</strong>. These Terms & Conditions govern your use of our services.
+                    Welcome to <strong className="text-brand-primary font-semibold">{t.COMPANY.name}</strong>. These Terms & Conditions govern your use of our services.
                   </p>
 
                   <div>
@@ -111,7 +113,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
                     <h3 className="font-heading font-bold text-lg sm:text-xl text-brand-text-dark mb-2 flex items-center gap-3">
                       <span className="text-brand-secondary text-sm">02.</span> Services Offered
                     </h3>
-                    <p className="text-[14px] sm:text-[15px] pl-7">We offer Gold Loans, Silver Loans, and other financial products subject to our eligibility criteria and approval process. All loan sanctions are at the sole discretion of {COMPANY.name}.</p>
+                    <p className="text-[14px] sm:text-[15px] pl-7">We offer Gold Loans, Silver Loans, and other financial products subject to our eligibility criteria and approval process. All loan sanctions are at the sole discretion of {t.COMPANY.name}.</p>
                   </div>
 
                   <div>
@@ -132,7 +134,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
                     <h3 className="font-heading font-bold text-lg sm:text-xl text-brand-text-dark mb-2 flex items-center gap-3">
                       <span className="text-brand-secondary text-sm">05.</span> Default & Recovery
                     </h3>
-                    <p className="text-[14px] sm:text-[15px] pl-7">In the event of a default on loan repayment, {COMPANY.name} reserves the right to initiate recovery proceedings, including the auction of pledged assets, as per applicable laws and regulations.</p>
+                    <p className="text-[14px] sm:text-[15px] pl-7">In the event of a default on loan repayment, {t.COMPANY.name} reserves the right to initiate recovery proceedings, including the auction of pledged assets, as per applicable laws and regulations.</p>
                   </div>
 
                   <div>
@@ -149,7 +151,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
               ) : (
                 <div className="space-y-7 max-w-3xl mx-auto">
                   <p className="text-[15px] sm:text-[16px]">
-                    At <strong className="text-brand-primary font-semibold">{COMPANY.name}</strong>, we are committed to protecting your privacy and safeguarding your personal information.
+                    At <strong className="text-brand-primary font-semibold">{t.COMPANY.name}</strong>, we are committed to protecting your privacy and safeguarding your personal information.
                   </p>
 
                   <div>
@@ -191,7 +193,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
                     <h3 className="font-heading font-bold text-lg sm:text-xl text-brand-text-dark mb-2 flex items-center gap-3">
                       <span className="text-brand-secondary text-sm">06.</span> Contact Us
                     </h3>
-                    <p className="text-[14px] sm:text-[15px] pl-7">If you have any questions about this Privacy Policy, please contact us at {COMPANY.email}</p>
+                    <p className="text-[14px] sm:text-[15px] pl-7">If you have any questions about this Privacy Policy, please contact us at {t.COMPANY.email}</p>
                   </div>
 
                   <div className="pt-8 text-center">

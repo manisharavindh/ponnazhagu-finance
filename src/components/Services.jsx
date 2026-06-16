@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import {
   Gem,
   Store,
@@ -10,7 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { SERVICES } from "../constants/data";
+import { useLanguage } from "../context/LanguageContext";
 import Button from "./ui/Button";
 
 const ICON_MAP = { Gem, Store, Wallet, Car, PiggyBank, Coins };
@@ -24,6 +24,7 @@ const ICON_CLASSES = {
 };
 
 function ServiceCard({ service }) {
+  const { t } = useLanguage();
   const Icon = ICON_MAP[service.icon];
   const iconClass = ICON_CLASSES[service.id] || ICON_CLASSES["gold-loan"];
 
@@ -56,7 +57,7 @@ function ServiceCard({ service }) {
         </ul>
 
         <Button href="#hero-form" className="w-full text-xs py-2.5 mt-auto shrink-0">
-          Apply Now
+          {t.UI_STRINGS.applyNow}
           <ArrowRight size={14} />
         </Button>
       </div>
@@ -91,7 +92,7 @@ function ServiceCard({ service }) {
 
         <div className="mt-auto text-center w-full shrink-0">
           <span className="block shadow-inner bg-stone-200/80 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold px-2 py-2.5 rounded-full border border-stone-300/50">
-            Coming Soon
+            {t.UI_STRINGS.comingSoon}
           </span>
         </div>
       </div>
@@ -100,6 +101,7 @@ function ServiceCard({ service }) {
 }
 
 export default function Services() {
+  const { t } = useLanguage();
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -115,7 +117,7 @@ export default function Services() {
         {/* Section Header */}
         <div className="text-center max-w-xl mx-auto">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold text-brand-text-dark leading-tight">
-            Services We Provide
+            {t.UI_STRINGS.servicesWeProvide}
           </h2>
           <div className="gold-divider">
             <span className="gold-divider-dot" />
@@ -146,8 +148,8 @@ export default function Services() {
           {/* Spacer to perfectly center the very first element if they scroll all the way back */}
           <div className="w-[calc(50vw-140px-8px)] shrink-0 snap-center" />
 
-          {SERVICES.map((service, index) => (
-            <div key={`mobile-${index}-${service.id}`} className="snap-center shrink-0">
+          {t.SERVICES.map((service) => (
+            <div key={`mobile-${service.id}`} className="snap-center shrink-0">
               <ServiceCard service={service} />
             </div>
           ))}
@@ -196,18 +198,18 @@ export default function Services() {
         <div className="services-mask-edges">
           <div className="services-marquee-track py-6">
             <div className="services-marquee-content" aria-hidden="false">
-              {SERVICES.map((service, index) => (
+              {t.SERVICES.map((service) => (
                 <ServiceCard key={`set1-${service.id}`} service={service} />
               ))}
             </div>
             <div className="services-marquee-content" aria-hidden="true">
-              {SERVICES.map((service, index) => (
+              {t.SERVICES.map((service) => (
                 <ServiceCard key={`set2-${service.id}`} service={service} />
               ))}
             </div>
             {/* Added a 3rd set for ultra-wide displays to guarantee no gap */}
             <div className="services-marquee-content" aria-hidden="true">
-              {SERVICES.map((service, index) => (
+              {t.SERVICES.map((service) => (
                 <ServiceCard key={`set3-${service.id}`} service={service} />
               ))}
             </div>
